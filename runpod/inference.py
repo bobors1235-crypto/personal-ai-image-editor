@@ -1,10 +1,11 @@
 """
 Inference Provider Layer for RunPod Image Editing.
 Features modular providers for FireRed-Image-Edit-1.1 and Qwen-Image-Edit-2511.
-Optimized with CPU offloading and VRAM tiling for 20B models.
+Optimized for 48GB GPU VRAM in native bfloat16 with low CPU memory footprint.
 """
 
 import os
+import gc
 import time
 import random
 import logging
@@ -86,10 +87,10 @@ class FireRedProvider(InferenceProvider):
             self.is_loaded = True
             return True
 
-        logger.info(f"Loading FireRed-Image-Edit-1.1 from {self.model_id}...")
+        logger.info(f"Loading FireRed-Image-Edit-1.1 from {self.model_id} in native bfloat16...")
         start_t = time.time()
         cache_dir = ModelManager.get_cache_dir()
-        dtype = ModelManager.get_dtype()
+        dtype = torch.bfloat16 if (torch.cuda.is_available() and torch.cuda.is_bf16_supported()) else torch.float16
         device = "cuda"
 
         try:
@@ -99,26 +100,24 @@ class FireRedProvider(InferenceProvider):
                 pipe = QwenImageEditPlusPipeline.from_pretrained(
                     self.model_id,
                     torch_dtype=dtype,
+                    dtype=dtype,
                     cache_dir=cache_dir,
-                    trust_remote_code=True
+                    trust_remote_code=True,
+                    low_cpu_mem_usage=True
                 )
             except Exception as pe:
                 logger.info(f"Direct QwenImageEditPlusPipeline load notice: {pe}. Falling back to DiffusionPipeline...")
                 pipe = DiffusionPipeline.from_pretrained(
                     self.model_id,
                     torch_dtype=dtype,
+                    dtype=dtype,
                     cache_dir=cache_dir,
-                    trust_remote_code=True
+                    trust_remote_code=True,
+                    low_cpu_mem_usage=True
                 )
 
-            # Apply memory optimizations for 20B parameters
-            if hasattr(pipe, "enable_model_cpu_offload"):
-                logger.info("Enabling model CPU offload (reduces VRAM from ~44GB to ~20GB)...")
-                pipe.enable_model_cpu_offload()
-            elif hasattr(pipe, "enable_sequential_cpu_offload"):
-                pipe.enable_sequential_cpu_offload()
-            else:
-                pipe.to(device)
+            # Move directly to GPU in bfloat16 (takes ~22GB VRAM on 48GB GPU, leaving ~26GB free)
+            pipe.to(device)
 
             if hasattr(pipe, "enable_attention_slicing"):
                 pipe.enable_attention_slicing(slice_size="auto")
@@ -130,7 +129,7 @@ class FireRedProvider(InferenceProvider):
             self.pipeline = pipe
             self.is_loaded = True
             load_time = round(time.time() - start_t, 2)
-            logger.info(f"FireRed-Image-Edit-1.1 loaded successfully in {load_time}s.")
+            logger.info(f"FireRed-Image-Edit-1.1 loaded on {device} in {load_time}s.")
             return True
         except Exception as e:
             logger.error(f"Failed to load FireRed model: {e}")
@@ -183,6 +182,11 @@ class FireRedProvider(InferenceProvider):
         dev_target = "cuda" if torch.cuda.is_available() else "cpu"
         generator = torch.Generator(device=dev_target).manual_seed(actual_seed)
 
+        # Free any lingering cache before forward pass
+        gc.collect()
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+
         with torch.inference_mode():
             try:
                 output = self.pipeline(
@@ -202,6 +206,11 @@ class FireRedProvider(InferenceProvider):
                 )
 
             result_img = output.images[0]
+
+        # Clean cache after forward pass
+        gc.collect()
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
 
         proc_time = round(time.time() - start_t, 2)
         metadata = {
@@ -234,10 +243,10 @@ class QwenProvider(InferenceProvider):
             self.is_loaded = True
             return True
 
-        logger.info(f"Loading Qwen-Image-Edit-2511 from {self.model_id}...")
+        logger.info(f"Loading Qwen-Image-Edit-2511 from {self.model_id} in native bfloat16...")
         start_t = time.time()
         cache_dir = ModelManager.get_cache_dir()
-        dtype = ModelManager.get_dtype()
+        dtype = torch.bfloat16 if (torch.cuda.is_available() and torch.cuda.is_bf16_supported()) else torch.float16
         device = "cuda"
 
         try:
@@ -247,24 +256,22 @@ class QwenProvider(InferenceProvider):
                 pipe = QwenImageEditPlusPipeline.from_pretrained(
                     self.model_id,
                     torch_dtype=dtype,
+                    dtype=dtype,
                     cache_dir=cache_dir,
-                    trust_remote_code=True
+                    trust_remote_code=True,
+                    low_cpu_mem_usage=True
                 )
             except Exception:
                 pipe = DiffusionPipeline.from_pretrained(
                     self.model_id,
                     torch_dtype=dtype,
+                    dtype=dtype,
                     cache_dir=cache_dir,
-                    trust_remote_code=True
+                    trust_remote_code=True,
+                    low_cpu_mem_usage=True
                 )
 
-            if hasattr(pipe, "enable_model_cpu_offload"):
-                logger.info("Enabling model CPU offload for Qwen...")
-                pipe.enable_model_cpu_offload()
-            elif hasattr(pipe, "enable_sequential_cpu_offload"):
-                pipe.enable_sequential_cpu_offload()
-            else:
-                pipe.to(device)
+            pipe.to(device)
 
             if hasattr(pipe, "enable_attention_slicing"):
                 pipe.enable_attention_slicing(slice_size="auto")
@@ -327,6 +334,10 @@ class QwenProvider(InferenceProvider):
         dev_target = "cuda" if torch.cuda.is_available() else "cpu"
         generator = torch.Generator(device=dev_target).manual_seed(actual_seed)
 
+        gc.collect()
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+
         with torch.inference_mode():
             try:
                 output = self.pipeline(
@@ -346,6 +357,10 @@ class QwenProvider(InferenceProvider):
                 )
 
             result_img = output.images[0]
+
+        gc.collect()
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
 
         proc_time = round(time.time() - start_t, 2)
         metadata = {
