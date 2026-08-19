@@ -15,10 +15,14 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from shared.schemas import EditRequest, EditResponse, HealthResponse
-from runpod.image_utils import base64_to_pil, pil_to_base64
-from runpod.model_loader import ModelManager
-from runpod.inference import registry
+try:
+    from image_utils import base64_to_pil, pil_to_base64
+    from model_loader import ModelManager
+    from inference import registry
+except ImportError:
+    from runpod.image_utils import base64_to_pil, pil_to_base64
+    from runpod.model_loader import ModelManager
+    from runpod.inference import registry
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
 logger = logging.getLogger("runpod_api")

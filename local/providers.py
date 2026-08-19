@@ -156,15 +156,17 @@ class RunPodServerlessClientProvider(BaseInferenceClient):
         start_time = time.time()
         payload = {"input": request.model_dump()}
 
-        # 1. Try runsync first for fast execution
-        sync_url = f"{self.base_url}/runsync"
+        # Always submit via async /run to prevent HTTP Gateway timeouts during Cold Starts
+        run_url = f"{self.base_url}/run"
         try:
-            logger.info(f"Sending request to RunPod Serverless Endpoint {self.endpoint_id}...")
-            resp = requests.post(sync_url, headers=self.headers, json=payload, timeout=min(self.timeout, 90))
+            logger.info(f"Submitting job to RunPod Serverless Endpoint {self.endpoint_id}...")
+            resp = requests.post(run_url, headers=self.headers, json=payload, timeout=30)
             
             if resp.status_code == 200:
                 data = resp.json()
+                job_id = data.get("id")
                 status = data.get("status")
+                logger.info(f"Job created on RunPod: ID={job_id}, Initial Status={status}")
 
                 if status == "COMPLETED":
                     output = data.get("output", {})
@@ -177,17 +179,7 @@ class RunPodServerlessClientProvider(BaseInferenceClient):
                             output["enhanced_prompt"] = request.enhanced_prompt or request.prompt
                         output["processing_time"] = round(time.time() - start_time, 2)
                         return EditResponse(**output)
-                
-                # If status is IN_QUEUE or IN_PROGRESS, fallback to polling
-                job_id = data.get("id")
-                if job_id:
-                    return self._poll_job(job_id, start_time, request)
 
-            # If sync timed out or returned job id, try async run
-            run_url = f"{self.base_url}/run"
-            resp_async = requests.post(run_url, headers=self.headers, json=payload, timeout=20)
-            if resp_async.status_code == 200:
-                job_id = resp_async.json().get("id")
                 if job_id:
                     return self._poll_job(job_id, start_time, request)
 
@@ -197,7 +189,7 @@ class RunPodServerlessClientProvider(BaseInferenceClient):
                 processing_time=round(time.time() - start_time, 2),
                 model_name=request.model_name,
                 enhanced_prompt=request.enhanced_prompt or request.prompt,
-                error=f"Serverless error: HTTP {resp.status_code} - {resp.text}"
+                error=f"Serverless launch error: HTTP {resp.status_code} - {resp.text}"
             )
 
         except Exception as e:
@@ -212,16 +204,24 @@ class RunPodServerlessClientProvider(BaseInferenceClient):
 
     def _poll_job(self, job_id: str, start_time: float, request: EditRequest) -> EditResponse:
         status_url = f"{self.base_url}/status/{job_id}"
-        poll_interval = 2.0
-        max_polls = int(self.timeout / poll_interval)
+        poll_interval = 3.0
+        max_duration = 600.0  # Allow up to 10 minutes for cold start + generation
+        max_polls = int(max_duration / poll_interval)
 
-        for _ in range(max_polls):
+        logger.info(f"Polling RunPod job {job_id} for up to {int(max_duration)}s...")
+
+        for poll_idx in range(max_polls):
             time.sleep(poll_interval)
             try:
-                resp = requests.get(status_url, headers=self.headers, timeout=10)
+                resp = requests.get(status_url, headers=self.headers, timeout=15)
                 if resp.status_code == 200:
                     data = resp.json()
                     status = data.get("status")
+
+                    if poll_idx % 4 == 0:
+                        elapsed = int(time.time() - start_time)
+                        logger.info(f"Job {job_id} status: {status} (elapsed: {elapsed}s)")
+
                     if status == "COMPLETED":
                         output = data.get("output", {})
                         if isinstance(output, dict):
@@ -232,18 +232,22 @@ class RunPodServerlessClientProvider(BaseInferenceClient):
                             if "enhanced_prompt" not in output:
                                 output["enhanced_prompt"] = request.enhanced_prompt or request.prompt
                             output["processing_time"] = round(time.time() - start_time, 2)
+                            logger.info(f"Job {job_id} completed successfully in {output['processing_time']}s!")
                             return EditResponse(**output)
+
                     elif status in ["FAILED", "CANCELLED"]:
+                        err_msg = data.get("error", "Serverless job failed or was cancelled.")
+                        logger.error(f"Job {job_id} failed: {err_msg}")
                         return EditResponse(
                             success=False,
                             seed=request.seed or 0,
                             processing_time=round(time.time() - start_time, 2),
                             model_name=request.model_name,
                             enhanced_prompt=request.enhanced_prompt or request.prompt,
-                            error=f"Job {status}: {data.get('error', 'Unknown error')}"
+                            error=f"Job {status}: {err_msg}"
                         )
-            except Exception:
-                pass
+            except Exception as e:
+                logger.warning(f"Transient error polling job {job_id}: {e}")
 
         return EditResponse(
             success=False,
@@ -251,7 +255,7 @@ class RunPodServerlessClientProvider(BaseInferenceClient):
             processing_time=round(time.time() - start_time, 2),
             model_name=request.model_name,
             enhanced_prompt=request.enhanced_prompt or request.prompt,
-            error="Serverless job timed out waiting for completion."
+            error="Serverless job timed out waiting for worker cold start and execution."
         )
 
     def switch_model(self, model_name: str) -> bool:

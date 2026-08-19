@@ -375,10 +375,10 @@ async function executeGeneration() {
       body: JSON.stringify(payload)
     });
 
-    const data = await resp.json();
+    const data = await resp.json().catch(() => ({ detail: 'تعذر قراءة رد السيرفر' }));
 
     if (!resp.ok || !data.edit_response || !data.edit_response.success) {
-      const errMsg = (data.edit_response && data.edit_response.error) || data.detail || 'حدث خطأ أثناء التوليد';
+      const errMsg = (data.edit_response && data.edit_response.error) || data.error || data.detail || 'حدث خطأ أثناء التوليد';
       throw new Error(errMsg);
     }
 

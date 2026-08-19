@@ -25,7 +25,7 @@ COPY shared /app/shared
 COPY runpod /app/runpod
 
 ENV PYTHONUNBUFFERED=1
-ENV PYTHONPATH=/app
+ENV PYTHONPATH=/app:/app/runpod
 ENV HF_HOME=/root/.cache/huggingface
 ENV TORCH_HOME=/root/.cache/torch
 

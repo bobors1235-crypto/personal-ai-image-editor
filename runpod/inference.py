@@ -11,8 +11,12 @@ from abc import ABC, abstractmethod
 from typing import Optional, Dict, Any, Tuple
 from PIL import Image
 
-from runpod.model_loader import ModelManager
-from runpod.image_utils import resize_image_aspect_ratio
+try:
+    from image_utils import resize_image_aspect_ratio
+    from model_loader import ModelManager
+except ImportError:
+    from runpod.image_utils import resize_image_aspect_ratio
+    from runpod.model_loader import ModelManager
 
 try:
     import torch

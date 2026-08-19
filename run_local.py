@@ -31,7 +31,7 @@ def main():
 
     try:
         import uvicorn
-        uvicorn.run("local.server:app", host=host, port=port, reload=False)
+        uvicorn.run("local.server:app", host=host, port=port, reload=True, reload_dirs=["local", "shared"])
     except KeyboardInterrupt:
         print("\n[!] Local server stopped gracefully.")
     except Exception as e:

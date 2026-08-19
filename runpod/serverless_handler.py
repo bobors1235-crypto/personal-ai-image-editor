@@ -9,18 +9,30 @@ import time
 import logging
 from pathlib import Path
 
-# Add project root to sys.path
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+# Add project root and runpod directory to sys.path
+current_dir = Path(__file__).resolve().parent
+project_root = current_dir.parent
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
+if str(current_dir) not in sys.path:
+    sys.path.insert(0, str(current_dir))
 
 from shared.schemas import EditRequest
-from runpod.image_utils import base64_to_pil, pil_to_base64
-from runpod.inference import registry
-from runpod.model_loader import ModelManager
+
+# Import local modules with safe fallback to avoid clash with pip 'runpod' package
+try:
+    from image_utils import base64_to_pil, pil_to_base64
+    from inference import registry
+    from model_loader import ModelManager
+except ImportError:
+    from runpod.image_utils import base64_to_pil, pil_to_base64
+    from runpod.inference import registry
+    from runpod.model_loader import ModelManager
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
 logger = logging.getLogger("serverless_worker")
 
-# Attempt importing runpod
+# Import runpod SDK package
 try:
     import runpod
 except ImportError:
@@ -48,7 +60,7 @@ def serverless_handler(job: dict) -> dict:
         # 2. Select Provider & Ensure Loaded
         provider = registry.get_provider(req.model_name)
         if not provider.is_loaded:
-            logger.info(f"Loading {req.model_name} for incoming job...")
+            logger.info(f"Loading {req.model_name} into VRAM for job...")
             provider.load()
 
         # 3. Perform Inference
