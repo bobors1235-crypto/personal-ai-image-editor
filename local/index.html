@@ -349,24 +349,31 @@
             <label class="setting-label">نوع المزود (Provider Mode)</label>
             <select id="settingProviderType" class="form-select">
               <option value="mock">⚡ Local Mock Provider (تجربة مجانية وفورية بدون GPU)</option>
-              <option value="runpod">🚀 RunPod GPU Server (استدلال حقيقي على GPU)</option>
+              <option value="runpod">🚀 RunPod GPU Pod (استدلال سريع ومباشر على Pod)</option>
+              <option value="serverless">☁️ RunPod Serverless (Scale-to-Zero Endpoint)</option>
             </select>
           </div>
 
+          <div class="setting-item" id="rowServerlessId" style="display: none;">
+            <label class="setting-label">RunPod Serverless Endpoint ID</label>
+            <input type="text" id="settingServerlessId" class="form-input" placeholder="مثلاً: vllm-abc12345" />
+            <small class="setting-hint">معرف الـ Serverless Endpoint في لوحة RunPod Serverless.</small>
+          </div>
+
+          <div class="setting-item" id="rowPodUrl">
+            <label class="setting-label">رابط RunPod Endpoint URL (للـ Pod)</label>
+            <input type="text" id="settingRunpodUrl" class="form-input" placeholder="https://<pod_id>-8000.proxy.runpod.net" />
+          </div>
+
           <div class="setting-item">
-            <label class="setting-label">رابط RunPod Endpoint URL</label>
-            <input type="text" id="settingRunpodUrl" class="form-input" placeholder="http://127.0.0.1:8000 أو رابط البروكسي" />
+            <label class="setting-label">RunPod API Key (ضروري للـ Serverless والتحكم)</label>
+            <input type="password" id="settingApiKey" class="form-input" placeholder="rpa_..." />
           </div>
 
           <div class="setting-item">
             <label class="setting-label">سعر ساعة الـ GPU ($/Hour)</label>
             <input type="number" step="0.01" id="settingHourlyCost" class="form-input" placeholder="0.33" />
             <small class="setting-hint">يستخدم لحساب التكلفة التقديرية بدقة.</small>
-          </div>
-
-          <div class="setting-item">
-            <label class="setting-label">RunPod API Key (اختياري للتحكم التلقائي)</label>
-            <input type="password" id="settingApiKey" class="form-input" placeholder="rpa_..." />
           </div>
 
           <div class="setting-item">

@@ -104,6 +104,9 @@ const elements = {
   btnCancelSettings: document.getElementById('btnCancelSettings'),
   btnSaveSettings: document.getElementById('btnSaveSettings'),
   settingProviderType: document.getElementById('settingProviderType'),
+  settingServerlessId: document.getElementById('settingServerlessId'),
+  rowServerlessId: document.getElementById('rowServerlessId'),
+  rowPodUrl: document.getElementById('rowPodUrl'),
   settingRunpodUrl: document.getElementById('settingRunpodUrl'),
   settingHourlyCost: document.getElementById('settingHourlyCost'),
   settingApiKey: document.getElementById('settingApiKey'),
@@ -236,6 +239,7 @@ function initEventListeners() {
   elements.btnCloseSettings.addEventListener('click', closeSettingsModal);
   elements.btnCancelSettings.addEventListener('click', closeSettingsModal);
   elements.btnSaveSettings.addEventListener('click', saveSettings);
+  elements.settingProviderType.addEventListener('change', updateSettingsVisibility);
   elements.btnReconnect.addEventListener('click', fetchHealth);
   elements.btnBannerReconnect.addEventListener('click', fetchHealth);
 
@@ -643,6 +647,7 @@ async function fetchHealth() {
 
     const health = data.health;
     const isMock = (data.provider_type === 'mock');
+    const isServerless = (data.provider_type === 'serverless');
     const isReady = (health.status === 'ready');
 
     elements.uptimeCounter.textContent = data.session_uptime_formatted;
@@ -652,6 +657,16 @@ async function fetchHealth() {
       elements.statusDot.className = 'status-dot mock';
       elements.statusText.textContent = '⚡ Mock Mode (مجاني)';
       elements.offlineBanner.classList.add('hidden');
+    } else if (isServerless) {
+      if (isReady) {
+        elements.statusDot.className = 'status-dot ready';
+        elements.statusText.textContent = '☁️ Serverless Ready (Scale-to-Zero)';
+        elements.offlineBanner.classList.add('hidden');
+      } else {
+        elements.statusDot.className = 'status-dot';
+        elements.statusText.textContent = `○ Serverless (${health.gpu_name || 'Not Configured'})`;
+        elements.offlineBanner.classList.remove('hidden');
+      }
     } else if (isReady) {
       elements.statusDot.className = 'status-dot ready';
       elements.statusText.textContent = `● GPU Ready (${health.gpu_name || 'CUDA'})`;
@@ -671,6 +686,20 @@ async function fetchHealth() {
 // ==========================================================================
 // Settings Modal & Pod Management
 // ==========================================================================
+function updateSettingsVisibility() {
+  const pType = elements.settingProviderType.value;
+  if (pType === 'serverless') {
+    elements.rowServerlessId.style.display = 'flex';
+    elements.rowPodUrl.style.display = 'none';
+  } else if (pType === 'runpod') {
+    elements.rowServerlessId.style.display = 'none';
+    elements.rowPodUrl.style.display = 'flex';
+  } else {
+    elements.rowServerlessId.style.display = 'none';
+    elements.rowPodUrl.style.display = 'none';
+  }
+}
+
 async function loadConfig() {
   try {
     const resp = await fetch('/api/config');
@@ -678,6 +707,7 @@ async function loadConfig() {
     const cfg = await resp.json();
 
     elements.settingProviderType.value = cfg.provider_type || 'mock';
+    elements.settingServerlessId.value = cfg.runpod_serverless_endpoint_id || '';
     elements.settingRunpodUrl.value = cfg.runpod_endpoint_url || 'http://127.0.0.1:8000';
     elements.settingHourlyCost.value = cfg.gpu_hourly_cost || 0.33;
     elements.settingApiKey.value = cfg.runpod_api_key || '';
@@ -686,6 +716,8 @@ async function loadConfig() {
     elements.modelSelect.value = cfg.default_model || 'FireRed-Image-Edit-1.1';
     elements.qualitySelect.value = cfg.default_quality || 'high';
     elements.identitySelect.value = cfg.default_identity_strength || 'high';
+
+    updateSettingsVisibility();
   } catch (e) {
     console.warn('Failed to load config:', e);
   }
@@ -705,6 +737,7 @@ async function saveSettings() {
   const autoStopMin = parseInt(elements.settingAutoStop.value);
   const newConfig = {
     provider_type: elements.settingProviderType.value,
+    runpod_serverless_endpoint_id: elements.settingServerlessId.value.trim(),
     runpod_endpoint_url: elements.settingRunpodUrl.value.trim(),
     gpu_hourly_cost: parseFloat(elements.settingHourlyCost.value) || 0.33,
     runpod_api_key: elements.settingApiKey.value.trim(),

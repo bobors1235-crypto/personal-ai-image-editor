@@ -106,6 +106,144 @@ class RunPodClientProvider(BaseInferenceClient):
             return False
 
 
+class RunPodServerlessClientProvider(BaseInferenceClient):
+    """Client for RunPod Serverless Endpoints (Scale-to-Zero)."""
+
+    def __init__(self, endpoint_id: str, api_key: str, timeout: int = 300):
+        self.endpoint_id = endpoint_id.strip() if endpoint_id else ""
+        self.api_key = api_key.strip() if api_key else ""
+        self.timeout = timeout
+        self.base_url = f"https://api.runpod.ai/v2/{self.endpoint_id}"
+        self.headers = {
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {self.api_key}"
+        }
+
+    def health(self) -> HealthResponse:
+        if not self.endpoint_id or not self.api_key:
+            return HealthResponse(status="offline", gpu_name="Missing Serverless Endpoint ID or API Key")
+
+        url = f"{self.base_url}/health"
+        try:
+            resp = requests.get(url, headers=self.headers, timeout=8)
+            if resp.status_code == 200:
+                data = resp.json()
+                workers = data.get("workers", {})
+                ready_workers = workers.get("ready", 0) + workers.get("running", 0)
+                idle_workers = workers.get("idle", 0)
+                return HealthResponse(
+                    status="ready",
+                    gpu_name=f"RunPod Serverless ({ready_workers + idle_workers} active workers)",
+                    vram_used_gb=0.0,
+                    vram_total_gb=48.0,
+                    active_model="FireRed-Image-Edit-1.1"
+                )
+            return HealthResponse(status="offline", gpu_name=f"Serverless Error ({resp.status_code})")
+        except Exception as e:
+            return HealthResponse(status="offline", gpu_name=f"Serverless Offline ({type(e).__name__})")
+
+    def edit(self, request: EditRequest) -> EditResponse:
+        if not self.endpoint_id or not self.api_key:
+            return EditResponse(
+                success=False,
+                seed=0,
+                processing_time=0.0,
+                model_name=request.model_name,
+                enhanced_prompt=request.enhanced_prompt or request.prompt,
+                error="Serverless Endpoint ID and RunPod API Key are required. Please configure them in Settings."
+            )
+
+        start_time = time.time()
+        payload = {"input": request.model_dump()}
+
+        # 1. Try runsync first for fast execution
+        sync_url = f"{self.base_url}/runsync"
+        try:
+            logger.info(f"Sending request to RunPod Serverless Endpoint {self.endpoint_id}...")
+            resp = requests.post(sync_url, headers=self.headers, json=payload, timeout=min(self.timeout, 90))
+            
+            if resp.status_code == 200:
+                data = resp.json()
+                status = data.get("status")
+
+                if status == "COMPLETED":
+                    output = data.get("output", {})
+                    output["processing_time"] = round(time.time() - start_time, 2)
+                    return EditResponse(**output)
+                
+                # If status is IN_QUEUE or IN_PROGRESS, fallback to polling
+                job_id = data.get("id")
+                if job_id:
+                    return self._poll_job(job_id, start_time, request)
+
+            # If sync timed out or returned job id, try async run
+            run_url = f"{self.base_url}/run"
+            resp_async = requests.post(run_url, headers=self.headers, json=payload, timeout=20)
+            if resp_async.status_code == 200:
+                job_id = resp_async.json().get("id")
+                if job_id:
+                    return self._poll_job(job_id, start_time, request)
+
+            return EditResponse(
+                success=False,
+                seed=request.seed or 0,
+                processing_time=round(time.time() - start_time, 2),
+                model_name=request.model_name,
+                enhanced_prompt=request.enhanced_prompt or request.prompt,
+                error=f"Serverless error: HTTP {resp.status_code} - {resp.text}"
+            )
+
+        except Exception as e:
+            return EditResponse(
+                success=False,
+                seed=request.seed or 0,
+                processing_time=round(time.time() - start_time, 2),
+                model_name=request.model_name,
+                enhanced_prompt=request.enhanced_prompt or request.prompt,
+                error=f"Serverless connection error: {str(e)}"
+            )
+
+    def _poll_job(self, job_id: str, start_time: float, request: EditRequest) -> EditResponse:
+        status_url = f"{self.base_url}/status/{job_id}"
+        poll_interval = 2.0
+        max_polls = int(self.timeout / poll_interval)
+
+        for _ in range(max_polls):
+            time.sleep(poll_interval)
+            try:
+                resp = requests.get(status_url, headers=self.headers, timeout=10)
+                if resp.status_code == 200:
+                    data = resp.json()
+                    status = data.get("status")
+                    if status == "COMPLETED":
+                        output = data.get("output", {})
+                        output["processing_time"] = round(time.time() - start_time, 2)
+                        return EditResponse(**output)
+                    elif status in ["FAILED", "CANCELLED"]:
+                        return EditResponse(
+                            success=False,
+                            seed=request.seed or 0,
+                            processing_time=round(time.time() - start_time, 2),
+                            model_name=request.model_name,
+                            enhanced_prompt=request.enhanced_prompt or request.prompt,
+                            error=f"Job {status}: {data.get('error', 'Unknown error')}"
+                        )
+            except Exception:
+                pass
+
+        return EditResponse(
+            success=False,
+            seed=request.seed or 0,
+            processing_time=round(time.time() - start_time, 2),
+            model_name=request.model_name,
+            enhanced_prompt=request.enhanced_prompt or request.prompt,
+            error="Serverless job timed out waiting for completion."
+        )
+
+    def switch_model(self, model_name: str) -> bool:
+        return True
+
+
 class MockClientProvider(BaseInferenceClient):
     """
     Mock inference provider for testing UI, history, and Prompt Engine locally

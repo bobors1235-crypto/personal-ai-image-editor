@@ -76,6 +76,7 @@ class HistoryItem(BaseModel):
 class ConfigSchema(BaseModel):
     """Local application configuration."""
     runpod_endpoint_url: str = "http://127.0.0.1:8000"
+    runpod_serverless_endpoint_id: Optional[str] = None
     runpod_api_key: Optional[str] = None
     runpod_pod_id: Optional[str] = None
     gpu_hourly_cost: float = 0.33
@@ -85,4 +86,4 @@ class ConfigSchema(BaseModel):
     default_quality: str = "high"
     default_identity_strength: str = "high"
     developer_mode: bool = False
-    provider_type: str = "runpod"  # "runpod" or "mock"
+    provider_type: str = "runpod"  # "runpod", "serverless", or "mock"

@@ -27,7 +27,7 @@ from pydantic import BaseModel
 
 from shared.schemas import EditRequest, EditResponse, HealthResponse, PromptAnalysis, HistoryItem, ConfigSchema
 from local.prompt_engine import PromptEngine
-from local.providers import RunPodClientProvider, MockClientProvider, RunPodAPIController
+from local.providers import RunPodClientProvider, RunPodServerlessClientProvider, MockClientProvider, RunPodAPIController
 from runpod.image_utils import base64_to_pil
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
@@ -85,8 +85,14 @@ class AppState:
         if self.config.provider_type == "mock":
             logger.info("Initializing Local Mock Provider.")
             return MockClientProvider()
+        elif self.config.provider_type == "serverless":
+            logger.info(f"Initializing RunPod Serverless Provider for Endpoint: {self.config.runpod_serverless_endpoint_id}")
+            return RunPodServerlessClientProvider(
+                endpoint_id=self.config.runpod_serverless_endpoint_id or "",
+                api_key=self.config.runpod_api_key or ""
+            )
         else:
-            logger.info(f"Initializing RunPod Provider connected to: {self.config.runpod_endpoint_url}")
+            logger.info(f"Initializing RunPod Pod Provider connected to: {self.config.runpod_endpoint_url}")
             return RunPodClientProvider(
                 endpoint_url=self.config.runpod_endpoint_url,
                 api_key=self.config.runpod_api_key
