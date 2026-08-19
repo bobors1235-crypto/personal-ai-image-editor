@@ -17,18 +17,6 @@ if str(project_root) not in sys.path:
 if str(current_dir) not in sys.path:
     sys.path.insert(0, str(current_dir))
 
-from shared.schemas import EditRequest
-
-# Import local modules with safe fallback to avoid clash with pip 'runpod' package
-try:
-    from image_utils import base64_to_pil, pil_to_base64
-    from inference import registry
-    from model_loader import ModelManager
-except ImportError:
-    from runpod.image_utils import base64_to_pil, pil_to_base64
-    from runpod.inference import registry
-    from runpod.model_loader import ModelManager
-
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
 logger = logging.getLogger("serverless_worker")
 
@@ -45,6 +33,15 @@ def serverless_handler(job: dict) -> dict:
     Standard RunPod Serverless handler function.
     Job input payload schema matches EditRequest.
     """
+    # Lazy imports to ensure immediate worker registration
+    from shared.schemas import EditRequest
+    try:
+        from image_utils import base64_to_pil, pil_to_base64
+        from inference import registry
+    except ImportError:
+        from runpod.image_utils import base64_to_pil, pil_to_base64
+        from runpod.inference import registry
+
     job_input = job.get("input", {})
     if not job_input:
         return {"error": "Missing input dictionary in job payload."}
