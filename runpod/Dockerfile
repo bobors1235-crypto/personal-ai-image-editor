@@ -13,9 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Install Python requirements
 COPY runpod/requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt && \
-    pip install --no-cache-dir runpod && \
-    pip install --no-cache-dir git+https://github.com/huggingface/diffusers.git
+    pip install --no-cache-dir -r requirements.txt
 
 # Create cache directories
 RUN mkdir -p /root/.cache/huggingface /root/.cache/torch /root/.cache/image_editor_models

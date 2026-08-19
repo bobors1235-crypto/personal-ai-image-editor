@@ -1,0 +1,329 @@
+2026-08-19 05:40:13.856 | info | dpnds77kkzezoy | \n
+2026-08-19 05:40:13.856 | info | dpnds77kkzezoy | ==========\n
+2026-08-19 05:40:13.856 | info | dpnds77kkzezoy | == CUDA ==\n
+2026-08-19 05:40:13.856 | info | dpnds77kkzezoy | ==========\n
+2026-08-19 05:40:13.856 | info | dpnds77kkzezoy | \n
+2026-08-19 05:40:13.856 | info | dpnds77kkzezoy | CUDA Version 12.4.1\n
+2026-08-19 05:40:13.856 | info | dpnds77kkzezoy | \n
+2026-08-19 05:40:13.856 | info | dpnds77kkzezoy | Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.\n
+2026-08-19 05:40:13.856 | info | dpnds77kkzezoy | \n
+2026-08-19 05:40:13.856 | info | dpnds77kkzezoy | This container image and its contents are governed by the NVIDIA Deep Learning Container License.\n
+2026-08-19 05:40:13.856 | info | dpnds77kkzezoy | By pulling and using the container, you accept the terms and conditions of this license:\n
+2026-08-19 05:40:13.856 | info | dpnds77kkzezoy | https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license\n
+2026-08-19 05:40:13.856 | info | dpnds77kkzezoy | \n
+2026-08-19 05:40:13.856 | info | dpnds77kkzezoy | A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.\n
+2026-08-19 05:40:13.856 | info | dpnds77kkzezoy | \n
+2026-08-19 05:40:13.856 | info | dpnds77kkzezoy | Traceback (most recent call last):\n
+2026-08-19 05:40:14.009 | info | dpnds77kkzezoy |   File "/app/runpod/serverless_handler.py", line 16, in <module>\n
+2026-08-19 05:40:14.010 | info | dpnds77kkzezoy |     from runpod.image_utils import base64_to_pil, pil_to_base64\n
+2026-08-19 05:40:14.010 | info | dpnds77kkzezoy | ModuleNotFoundError: No module named 'runpod.image_utils'\n
+2026-08-19 05:40:14.375 | error | dpnds77kkzezoy | worker exited with exit code 1
+2026-08-19 05:40:21.142 | error | dpnds77kkzezoy | worker exited with exit code 1
+2026-08-19 05:40:24.148 | info | dpnds77kkzezoy | Traceback (most recent call last):\n
+2026-08-19 05:40:24.148 | info | dpnds77kkzezoy |   File "/app/runpod/serverless_handler.py", line 16, in <module>\n
+2026-08-19 05:40:24.148 | info | dpnds77kkzezoy |     from runpod.image_utils import base64_to_pil, pil_to_base64\n
+2026-08-19 05:40:24.148 | info | dpnds77kkzezoy | ModuleNotFoundError: No module named 'runpod.image_utils'\n
+2026-08-19 05:40:24.148 | info | dpnds77kkzezoy | \n
+2026-08-19 05:40:24.148 | info | dpnds77kkzezoy | ==========\n
+2026-08-19 05:40:24.148 | info | dpnds77kkzezoy | == CUDA ==\n
+2026-08-19 05:40:24.148 | info | dpnds77kkzezoy | ==========\n
+2026-08-19 05:40:24.148 | info | dpnds77kkzezoy | \n
+2026-08-19 05:40:24.149 | info | dpnds77kkzezoy | CUDA Version 12.4.1\n
+2026-08-19 05:40:24.149 | info | dpnds77kkzezoy | \n
+2026-08-19 05:40:24.149 | info | dpnds77kkzezoy | Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.\n
+2026-08-19 05:40:24.149 | info | dpnds77kkzezoy | \n
+2026-08-19 05:40:24.149 | info | dpnds77kkzezoy | This container image and its contents are governed by the NVIDIA Deep Learning Container License.\n
+2026-08-19 05:40:24.149 | info | dpnds77kkzezoy | By pulling and using the container, you accept the terms and conditions of this license:\n
+2026-08-19 05:40:24.149 | info | dpnds77kkzezoy | https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license\n
+2026-08-19 05:40:24.149 | info | dpnds77kkzezoy | \n
+2026-08-19 05:40:24.149 | info | dpnds77kkzezoy | A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.\n
+2026-08-19 05:40:24.149 | info | dpnds77kkzezoy | \n
+2026-08-19 05:40:24.149 | info | dpnds77kkzezoy | Traceback (most recent call last):\n
+2026-08-19 05:40:24.149 | info | dpnds77kkzezoy |   File "/app/runpod/serverless_handler.py", line 16, in <module>\n
+2026-08-19 05:40:24.149 | info | dpnds77kkzezoy |     from runpod.image_utils import base64_to_pil, pil_to_base64\n
+2026-08-19 05:40:24.149 | info | dpnds77kkzezoy | ModuleNotFoundError: No module named 'runpod.image_utils'\n
+2026-08-19 05:40:24.149 | info | dpnds77kkzezoy | \n
+2026-08-19 05:40:24.149 | info | dpnds77kkzezoy | ==========\n
+2026-08-19 05:40:24.149 | info | dpnds77kkzezoy | == CUDA ==\n
+2026-08-19 05:40:24.150 | info | dpnds77kkzezoy | ==========\n
+2026-08-19 05:40:24.150 | info | dpnds77kkzezoy | \n
+2026-08-19 05:40:24.150 | info | dpnds77kkzezoy | CUDA Version 12.4.1\n
+2026-08-19 05:40:24.150 | info | dpnds77kkzezoy | \n
+2026-08-19 05:40:24.150 | info | dpnds77kkzezoy | Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.\n
+2026-08-19 05:40:24.150 | info | dpnds77kkzezoy | \n
+2026-08-19 05:40:24.150 | info | dpnds77kkzezoy | This container image and its contents are governed by the NVIDIA Deep Learning Container License.\n
+2026-08-19 05:40:24.150 | info | dpnds77kkzezoy | By pulling and using the container, you accept the terms and conditions of this license:\n
+2026-08-19 05:40:24.150 | info | dpnds77kkzezoy | https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license\n
+2026-08-19 05:40:24.150 | info | dpnds77kkzezoy | \n
+2026-08-19 05:40:24.150 | info | dpnds77kkzezoy | A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.\n
+2026-08-19 05:40:24.150 | info | dpnds77kkzezoy | \n
+2026-08-19 05:40:24.150 | info | dpnds77kkzezoy | Traceback (most recent call last):\n
+2026-08-19 05:40:24.284 | info | dpnds77kkzezoy |   File "/app/runpod/serverless_handler.py", line 16, in <module>\n
+2026-08-19 05:40:24.284 | info | dpnds77kkzezoy |     from runpod.image_utils import base64_to_pil, pil_to_base64\n
+2026-08-19 05:40:24.284 | info | dpnds77kkzezoy | ModuleNotFoundError: No module named 'runpod.image_utils'\n
+2026-08-19 05:40:26.879 | error | dpnds77kkzezoy | worker exited with exit code 1
+2026-08-19 05:51:39.184 | info | 54bpmam13pbcom | \n
+2026-08-19 05:51:39.184 | info | 54bpmam13pbcom | ==========\n
+2026-08-19 05:51:39.184 | info | 54bpmam13pbcom | == CUDA ==\n
+2026-08-19 05:51:39.184 | info | 54bpmam13pbcom | ==========\n
+2026-08-19 05:51:39.184 | info | 54bpmam13pbcom | \n
+2026-08-19 05:51:39.184 | info | 54bpmam13pbcom | CUDA Version 12.4.1\n
+2026-08-19 05:51:39.184 | info | 54bpmam13pbcom | \n
+2026-08-19 05:51:39.184 | info | 54bpmam13pbcom | Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.\n
+2026-08-19 05:51:39.184 | info | 54bpmam13pbcom | \n
+2026-08-19 05:51:39.184 | info | 54bpmam13pbcom | This container image and its contents are governed by the NVIDIA Deep Learning Container License.\n
+2026-08-19 05:51:39.184 | info | 54bpmam13pbcom | By pulling and using the container, you accept the terms and conditions of this license:\n
+2026-08-19 05:51:39.184 | info | 54bpmam13pbcom | https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license\n
+2026-08-19 05:51:39.184 | info | 54bpmam13pbcom | \n
+2026-08-19 05:51:39.184 | info | 54bpmam13pbcom | A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.\n
+2026-08-19 05:51:39.184 | info | 54bpmam13pbcom | \n
+2026-08-19 05:51:39.184 | info | 54bpmam13pbcom | Traceback (most recent call last):\n
+2026-08-19 05:51:39.185 | info | 54bpmam13pbcom |   File "/app/runpod/serverless_handler.py", line 16, in <module>\n
+2026-08-19 05:51:39.185 | info | 54bpmam13pbcom |     from runpod.image_utils import base64_to_pil, pil_to_base64\n
+2026-08-19 05:51:39.185 | info | 54bpmam13pbcom | ModuleNotFoundError: No module named 'runpod.image_utils'\n
+2026-08-19 05:52:02.492 | error | 54bpmam13pbcom | worker exited with exit code 1
+2026-08-19 05:52:19.866 | error | 54bpmam13pbcom | worker exited with exit code 1
+2026-08-19 05:52:22.970 | info | 54bpmam13pbcom | \n
+2026-08-19 05:52:22.970 | info | 54bpmam13pbcom | ==========\n
+2026-08-19 05:52:22.970 | info | 54bpmam13pbcom | == CUDA ==\n
+2026-08-19 05:52:22.970 | info | 54bpmam13pbcom | ==========\n
+2026-08-19 05:52:22.970 | info | 54bpmam13pbcom | \n
+2026-08-19 05:52:22.970 | info | 54bpmam13pbcom | CUDA Version 12.4.1\n
+2026-08-19 05:52:22.971 | info | 54bpmam13pbcom | \n
+2026-08-19 05:52:22.971 | info | 54bpmam13pbcom | Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.\n
+2026-08-19 05:52:22.971 | info | 54bpmam13pbcom | \n
+2026-08-19 05:52:22.971 | info | 54bpmam13pbcom | This container image and its contents are governed by the NVIDIA Deep Learning Container License.\n
+2026-08-19 05:52:22.971 | info | 54bpmam13pbcom | By pulling and using the container, you accept the terms and conditions of this license:\n
+2026-08-19 05:52:22.971 | info | 54bpmam13pbcom | https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license\n
+2026-08-19 05:52:22.971 | info | 54bpmam13pbcom | \n
+2026-08-19 05:52:22.971 | info | 54bpmam13pbcom | A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.\n
+2026-08-19 05:52:22.971 | info | 54bpmam13pbcom | \n
+2026-08-19 05:52:22.971 | info | 54bpmam13pbcom | Traceback (most recent call last):\n
+2026-08-19 05:52:23.140 | info | 54bpmam13pbcom |   File "/app/runpod/serverless_handler.py", line 16, in <module>\n
+2026-08-19 05:52:23.140 | info | 54bpmam13pbcom |     from runpod.image_utils import base64_to_pil, pil_to_base64\n
+2026-08-19 05:52:23.140 | info | 54bpmam13pbcom | ModuleNotFoundError: No module named 'runpod.image_utils'\n
+2026-08-19 05:52:37.237 | error | 54bpmam13pbcom | worker exited with exit code 1
+2026-08-19 05:52:54.660 | error | 54bpmam13pbcom | worker exited with exit code 1
+2026-08-19 05:53:12.065 | error | 54bpmam13pbcom | worker exited with exit code 1
+2026-08-19 05:53:19.251 | error | 54bpmam13pbcom | worker exited with exit code 1
+2026-08-19 05:53:30.743 | error | 54bpmam13pbcom | worker exited with exit code 1
+2026-08-19 05:59:44.479 | info | rctqp9wgiu6ofe | \n
+2026-08-19 05:59:44.479 | info | rctqp9wgiu6ofe | ==========\n
+2026-08-19 05:59:44.479 | info | rctqp9wgiu6ofe | == CUDA ==\n
+2026-08-19 05:59:44.479 | info | rctqp9wgiu6ofe | ==========\n
+2026-08-19 05:59:44.479 | info | rctqp9wgiu6ofe | \n
+2026-08-19 05:59:44.479 | info | rctqp9wgiu6ofe | CUDA Version 12.4.1\n
+2026-08-19 05:59:44.479 | info | rctqp9wgiu6ofe | \n
+2026-08-19 05:59:44.479 | info | rctqp9wgiu6ofe | Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.\n
+2026-08-19 05:59:44.479 | info | rctqp9wgiu6ofe | \n
+2026-08-19 05:59:44.479 | info | rctqp9wgiu6ofe | This container image and its contents are governed by the NVIDIA Deep Learning Container License.\n
+2026-08-19 05:59:44.479 | info | rctqp9wgiu6ofe | By pulling and using the container, you accept the terms and conditions of this license:\n
+2026-08-19 05:59:44.479 | info | rctqp9wgiu6ofe | https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license\n
+2026-08-19 05:59:44.479 | info | rctqp9wgiu6ofe | \n
+2026-08-19 05:59:44.479 | info | rctqp9wgiu6ofe | A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.\n
+2026-08-19 05:59:44.479 | info | rctqp9wgiu6ofe | \n
+2026-08-19 05:59:44.480 | info | rctqp9wgiu6ofe | Traceback (most recent call last):\n
+2026-08-19 05:59:44.480 | info | rctqp9wgiu6ofe |   File "/app/runpod/serverless_handler.py", line 16, in <module>\n
+2026-08-19 05:59:44.480 | info | rctqp9wgiu6ofe |     from runpod.image_utils import base64_to_pil, pil_to_base64\n
+2026-08-19 05:59:44.480 | info | rctqp9wgiu6ofe | ModuleNotFoundError: No module named 'runpod.image_utils'\n
+2026-08-19 06:00:00.689 | error | rctqp9wgiu6ofe | worker exited with exit code 1
+2026-08-19 06:00:05.884 | error | rctqp9wgiu6ofe | worker exited with exit code 1
+2026-08-19 06:00:12.941 | error | rctqp9wgiu6ofe | worker exited with exit code 1
+2026-08-19 06:00:22.457 | error | rctqp9wgiu6ofe | worker exited with exit code 1
+2026-08-19 06:07:46.119 | error | b3wjx8m93v7edj | worker exited with exit code 1
+2026-08-19 06:07:53.467 | error | b3wjx8m93v7edj | worker exited with exit code 1
+2026-08-19 06:07:56.577 | info | b3wjx8m93v7edj | \n
+2026-08-19 06:07:56.577 | info | b3wjx8m93v7edj | ==========\n
+2026-08-19 06:07:56.577 | info | b3wjx8m93v7edj | == CUDA ==\n
+2026-08-19 06:07:56.577 | info | b3wjx8m93v7edj | ==========\n
+2026-08-19 06:07:56.577 | info | b3wjx8m93v7edj | \n
+2026-08-19 06:07:56.577 | info | b3wjx8m93v7edj | CUDA Version 12.4.1\n
+2026-08-19 06:07:56.577 | info | b3wjx8m93v7edj | \n
+2026-08-19 06:07:56.577 | info | b3wjx8m93v7edj | Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.\n
+2026-08-19 06:07:56.577 | info | b3wjx8m93v7edj | \n
+2026-08-19 06:07:56.578 | info | b3wjx8m93v7edj | This container image and its contents are governed by the NVIDIA Deep Learning Container License.\n
+2026-08-19 06:07:56.578 | info | b3wjx8m93v7edj | By pulling and using the container, you accept the terms and conditions of this license:\n
+2026-08-19 06:07:56.578 | info | b3wjx8m93v7edj | https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license\n
+2026-08-19 06:07:56.578 | info | b3wjx8m93v7edj | \n
+2026-08-19 06:07:56.578 | info | b3wjx8m93v7edj | A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.\n
+2026-08-19 06:07:56.578 | info | b3wjx8m93v7edj | \n
+2026-08-19 06:07:56.578 | info | b3wjx8m93v7edj | Traceback (most recent call last):\n
+2026-08-19 06:07:56.578 | info | b3wjx8m93v7edj |   File "/app/runpod/serverless_handler.py", line 16, in <module>\n
+2026-08-19 06:07:56.578 | info | b3wjx8m93v7edj |     from runpod.image_utils import base64_to_pil, pil_to_base64\n
+2026-08-19 06:07:56.578 | info | b3wjx8m93v7edj | ModuleNotFoundError: No module named 'runpod.image_utils'\n
+2026-08-19 06:07:56.578 | info | b3wjx8m93v7edj | \n
+2026-08-19 06:07:56.578 | info | b3wjx8m93v7edj | ==========\n
+2026-08-19 06:07:56.578 | info | b3wjx8m93v7edj | == CUDA ==\n
+2026-08-19 06:07:56.578 | info | b3wjx8m93v7edj | ==========\n
+2026-08-19 06:07:56.578 | info | b3wjx8m93v7edj | \n
+2026-08-19 06:07:56.578 | info | b3wjx8m93v7edj | CUDA Version 12.4.1\n
+2026-08-19 06:07:56.578 | info | b3wjx8m93v7edj | \n
+2026-08-19 06:07:56.578 | info | b3wjx8m93v7edj | Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.\n
+2026-08-19 06:07:56.578 | info | b3wjx8m93v7edj | \n
+2026-08-19 06:07:56.578 | info | b3wjx8m93v7edj | This container image and its contents are governed by the NVIDIA Deep Learning Container License.\n
+2026-08-19 06:07:56.578 | info | b3wjx8m93v7edj | By pulling and using the container, you accept the terms and conditions of this license:\n
+2026-08-19 06:07:56.578 | info | b3wjx8m93v7edj | https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license\n
+2026-08-19 06:07:56.579 | info | b3wjx8m93v7edj | \n
+2026-08-19 06:07:56.579 | info | b3wjx8m93v7edj | A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.\n
+2026-08-19 06:07:56.579 | info | b3wjx8m93v7edj | \n
+2026-08-19 06:07:56.579 | info | b3wjx8m93v7edj | Traceback (most recent call last):\n
+2026-08-19 06:07:56.711 | info | b3wjx8m93v7edj |   File "/app/runpod/serverless_handler.py", line 16, in <module>\n
+2026-08-19 06:07:56.712 | info | b3wjx8m93v7edj |     from runpod.image_utils import base64_to_pil, pil_to_base64\n
+2026-08-19 06:07:56.712 | info | b3wjx8m93v7edj | ModuleNotFoundError: No module named 'runpod.image_utils'\n
+2026-08-19 06:07:59.081 | error | b3wjx8m93v7edj | worker exited with exit code 1
+2026-08-19 06:08:06.781 | info | b3wjx8m93v7edj | Traceback (most recent call last):\n
+2026-08-19 06:08:06.781 | info | b3wjx8m93v7edj |   File "/app/runpod/serverless_handler.py", line 16, in <module>\n
+2026-08-19 06:08:06.781 | info | b3wjx8m93v7edj |     from runpod.image_utils import base64_to_pil, pil_to_base64\n
+2026-08-19 06:08:06.781 | info | b3wjx8m93v7edj | ModuleNotFoundError: No module named 'runpod.image_utils'\n
+2026-08-19 06:08:06.781 | info | b3wjx8m93v7edj | \n
+2026-08-19 06:08:06.781 | info | b3wjx8m93v7edj | ==========\n
+2026-08-19 06:08:06.781 | info | b3wjx8m93v7edj | == CUDA ==\n
+2026-08-19 06:08:06.781 | info | b3wjx8m93v7edj | ==========\n
+2026-08-19 06:08:06.781 | info | b3wjx8m93v7edj | \n
+2026-08-19 06:08:06.781 | info | b3wjx8m93v7edj | CUDA Version 12.4.1\n
+2026-08-19 06:08:06.781 | info | b3wjx8m93v7edj | \n
+2026-08-19 06:08:06.781 | info | b3wjx8m93v7edj | Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.\n
+2026-08-19 06:08:06.781 | info | b3wjx8m93v7edj | \n
+2026-08-19 06:08:06.781 | info | b3wjx8m93v7edj | This container image and its contents are governed by the NVIDIA Deep Learning Container License.\n
+2026-08-19 06:08:06.781 | info | b3wjx8m93v7edj | By pulling and using the container, you accept the terms and conditions of this license:\n
+2026-08-19 06:08:06.782 | info | b3wjx8m93v7edj | https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license\n
+2026-08-19 06:08:06.782 | info | b3wjx8m93v7edj | \n
+2026-08-19 06:08:06.782 | info | b3wjx8m93v7edj | A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.\n
+2026-08-19 06:08:06.782 | info | b3wjx8m93v7edj | \n
+2026-08-19 06:08:06.782 | info | b3wjx8m93v7edj | Traceback (most recent call last):\n
+2026-08-19 06:08:06.782 | info | b3wjx8m93v7edj |   File "/app/runpod/serverless_handler.py", line 16, in <module>\n
+2026-08-19 06:08:06.782 | info | b3wjx8m93v7edj |     from runpod.image_utils import base64_to_pil, pil_to_base64\n
+2026-08-19 06:08:06.782 | info | b3wjx8m93v7edj | ModuleNotFoundError: No module named 'runpod.image_utils'\n
+2026-08-19 06:08:17.954 | info | b3wjx8m93v7edj | \n
+2026-08-19 06:08:17.954 | info | b3wjx8m93v7edj | ==========\n
+2026-08-19 06:08:17.954 | info | b3wjx8m93v7edj | == CUDA ==\n
+2026-08-19 06:08:17.954 | info | b3wjx8m93v7edj | ==========\n
+2026-08-19 06:08:17.954 | info | b3wjx8m93v7edj | \n
+2026-08-19 06:08:17.954 | info | b3wjx8m93v7edj | CUDA Version 12.4.1\n
+2026-08-19 06:08:17.954 | info | b3wjx8m93v7edj | \n
+2026-08-19 06:08:17.955 | info | b3wjx8m93v7edj | Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.\n
+2026-08-19 06:08:17.955 | info | b3wjx8m93v7edj | \n
+2026-08-19 06:08:17.955 | info | b3wjx8m93v7edj | This container image and its contents are governed by the NVIDIA Deep Learning Container License.\n
+2026-08-19 06:08:17.955 | info | b3wjx8m93v7edj | By pulling and using the container, you accept the terms and conditions of this license:\n
+2026-08-19 06:08:17.955 | info | b3wjx8m93v7edj | https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license\n
+2026-08-19 06:08:17.955 | info | b3wjx8m93v7edj | \n
+2026-08-19 06:08:17.955 | info | b3wjx8m93v7edj | A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.\n
+2026-08-19 06:08:17.955 | info | b3wjx8m93v7edj | \n
+2026-08-19 06:08:17.955 | info | b3wjx8m93v7edj | Traceback (most recent call last):\n
+2026-08-19 06:08:17.955 | info | b3wjx8m93v7edj |   File "/app/runpod/serverless_handler.py", line 16, in <module>\n
+2026-08-19 06:08:17.955 | info | b3wjx8m93v7edj |     from runpod.image_utils import base64_to_pil, pil_to_base64\n
+2026-08-19 06:08:17.955 | info | b3wjx8m93v7edj | ModuleNotFoundError: No module named 'runpod.image_utils'\n
+2026-08-19 06:08:33.653 | error | b3wjx8m93v7edj | worker exited with exit code 1
+2026-08-19 06:20:29.041 | error | tcrgvaqg9soih2 | worker exited with exit code 1
+2026-08-19 06:20:33.574 | info | tcrgvaqg9soih2 | \n
+2026-08-19 06:20:33.574 | info | tcrgvaqg9soih2 | ==========\n
+2026-08-19 06:20:33.574 | info | tcrgvaqg9soih2 | == CUDA ==\n
+2026-08-19 06:20:33.574 | info | tcrgvaqg9soih2 | ==========\n
+2026-08-19 06:20:33.574 | info | tcrgvaqg9soih2 | \n
+2026-08-19 06:20:33.574 | info | tcrgvaqg9soih2 | CUDA Version 12.4.1\n
+2026-08-19 06:20:33.574 | info | tcrgvaqg9soih2 | \n
+2026-08-19 06:20:33.574 | info | tcrgvaqg9soih2 | Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.\n
+2026-08-19 06:20:33.575 | info | tcrgvaqg9soih2 | \n
+2026-08-19 06:20:33.575 | info | tcrgvaqg9soih2 | This container image and its contents are governed by the NVIDIA Deep Learning Container License.\n
+2026-08-19 06:20:33.575 | info | tcrgvaqg9soih2 | By pulling and using the container, you accept the terms and conditions of this license:\n
+2026-08-19 06:20:33.575 | info | tcrgvaqg9soih2 | https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license\n
+2026-08-19 06:20:33.575 | info | tcrgvaqg9soih2 | \n
+2026-08-19 06:20:33.575 | info | tcrgvaqg9soih2 | A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.\n
+2026-08-19 06:20:33.575 | info | tcrgvaqg9soih2 | \n
+2026-08-19 06:20:33.575 | info | tcrgvaqg9soih2 | [transformers] Disabling PyTorch because PyTorch >= 2.5 is required but found 2.4.1+cu124\n
+2026-08-19 06:20:33.933 | info | tcrgvaqg9soih2 | [transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.\n
+2026-08-19 06:20:34.682 | info | tcrgvaqg9soih2 | Traceback (most recent call last):\n
+2026-08-19 06:20:34.683 | info | tcrgvaqg9soih2 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/utils/import_utils.py", line 1015, in _get_module\n
+2026-08-19 06:20:34.683 | info | tcrgvaqg9soih2 |     return importlib.import_module("." + module_name, self.__name__)\n
+2026-08-19 06:20:34.683 | info | tcrgvaqg9soih2 |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:20:34.683 | info | tcrgvaqg9soih2 |   File "/usr/lib/python3.11/importlib/__init__.py", line 126, in import_module\n
+2026-08-19 06:20:34.683 | info | tcrgvaqg9soih2 |     return _bootstrap._gcd_import(name[level:], package, level)\n
+2026-08-19 06:20:34.683 | info | tcrgvaqg9soih2 |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:20:34.683 | info | tcrgvaqg9soih2 |   File "<frozen importlib._bootstrap>", line 1204, in _gcd_import\n
+2026-08-19 06:20:34.683 | info | tcrgvaqg9soih2 |   File "<frozen importlib._bootstrap>", line 1176, in _find_and_load\n
+2026-08-19 06:20:34.683 | info | tcrgvaqg9soih2 |   File "<frozen importlib._bootstrap>", line 1126, in _find_and_load_unlocked\n
+2026-08-19 06:20:34.683 | info | tcrgvaqg9soih2 |   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed\n
+2026-08-19 06:20:34.683 | info | tcrgvaqg9soih2 |   File "<frozen importlib._bootstrap>", line 1204, in _gcd_import\n
+2026-08-19 06:20:34.683 | info | tcrgvaqg9soih2 |   File "<frozen importlib._bootstrap>", line 1176, in _find_and_load\n
+2026-08-19 06:20:34.683 | info | tcrgvaqg9soih2 |   File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked\n
+2026-08-19 06:20:34.683 | info | tcrgvaqg9soih2 |   File "<frozen importlib._bootstrap>", line 690, in _load_unlocked\n
+2026-08-19 06:20:34.684 | info | tcrgvaqg9soih2 |   File "<frozen importlib._bootstrap_external>", line 940, in exec_module\n
+2026-08-19 06:20:34.684 | info | tcrgvaqg9soih2 |   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed\n
+2026-08-19 06:20:34.684 | info | tcrgvaqg9soih2 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/models/autoencoders/__init__.py", line 1, in <module>\n
+2026-08-19 06:20:34.684 | info | tcrgvaqg9soih2 |     from .autoencoder_asym_kl import AsymmetricAutoencoderKL\n
+2026-08-19 06:20:34.684 | info | tcrgvaqg9soih2 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/models/autoencoders/autoencoder_asym_kl.py", line 21, in <module>\n
+2026-08-19 06:20:34.684 | info | tcrgvaqg9soih2 |     from .vae import AutoencoderMixin, DecoderOutput, DiagonalGaussianDistribution, Encoder, MaskConditionDecoder\n
+2026-08-19 06:20:34.684 | info | tcrgvaqg9soih2 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/models/autoencoders/vae.py", line 24, in <module>\n
+2026-08-19 06:20:34.684 | info | tcrgvaqg9soih2 |     from ..unets.unet_2d_blocks import (\n
+2026-08-19 06:20:34.684 | info | tcrgvaqg9soih2 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/models/unets/__init__.py", line 6, in <module>\n
+2026-08-19 06:20:34.684 | info | tcrgvaqg9soih2 |     from .unet_2d import UNet2DModel\n
+2026-08-19 06:20:34.684 | info | tcrgvaqg9soih2 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/models/unets/unet_2d.py", line 23, in <module>\n
+2026-08-19 06:20:34.684 | info | tcrgvaqg9soih2 |     from .unet_2d_blocks import UNetMidBlock2D, get_down_block, get_up_block\n
+2026-08-19 06:20:34.684 | info | tcrgvaqg9soih2 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/models/unets/unet_2d_blocks.py", line 36, in <module>\n
+2026-08-19 06:20:34.684 | info | tcrgvaqg9soih2 |     from ..transformers.dual_transformer_2d import DualTransformer2DModel\n
+2026-08-19 06:20:34.684 | info | tcrgvaqg9soih2 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/models/transformers/__init__.py", line 5, in <module>\n
+2026-08-19 06:20:34.684 | info | tcrgvaqg9soih2 |     from .ace_step_transformer import AceStepTransformer1DModel\n
+2026-08-19 06:20:34.684 | info | tcrgvaqg9soih2 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/models/transformers/ace_step_transformer.py", line 27, in <module>\n
+2026-08-19 06:20:34.685 | info | tcrgvaqg9soih2 |     from ..attention_dispatch import (\n
+2026-08-19 06:20:34.685 | info | tcrgvaqg9soih2 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/models/attention_dispatch.py", line 742, in <module>\n
+2026-08-19 06:20:34.685 | info | tcrgvaqg9soih2 |     @_custom_op("_diffusers_flash_attn_3::_flash_attn_forward", mutates_args=(), device_types="cuda")\n
+2026-08-19 06:20:34.685 | info | tcrgvaqg9soih2 |      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:20:34.685 | info | tcrgvaqg9soih2 |   File "/usr/local/lib/python3.11/dist-packages/torch/_library/custom_ops.py", line 119, in inner\n
+2026-08-19 06:20:34.685 | info | tcrgvaqg9soih2 |     schema_str = torch._custom_op.impl.infer_schema(fn, mutates_args)\n
+2026-08-19 06:20:34.685 | info | tcrgvaqg9soih2 |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:20:34.685 | info | tcrgvaqg9soih2 |   File "/usr/local/lib/python3.11/dist-packages/torch/_library/infer_schema.py", line 42, in infer_schema\n
+2026-08-19 06:20:34.685 | info | tcrgvaqg9soih2 |     error_fn(\n
+2026-08-19 06:20:34.685 | info | tcrgvaqg9soih2 |   File "/usr/local/lib/python3.11/dist-packages/torch/_library/infer_schema.py", line 21, in error_fn\n
+2026-08-19 06:20:34.685 | info | tcrgvaqg9soih2 |     raise ValueError(\n
+2026-08-19 06:20:34.685 | info | tcrgvaqg9soih2 | ValueError: infer_schema(func): Parameter q has unsupported type torch.Tensor. The valid types are: dict_keys([<class 'torch.Tensor'>, typing.Optional[torch.Tensor], typing.Sequence[torch.Tensor], typing.List[torch.Tensor], typing.Sequence[typing.Optional[torch.Tensor]], typing.List[typing.Optional[torch.Tensor]], <class 'int'>, typing.Optional[int], typing.Sequence[int], typing.List[int], typing.Optional[typing.Sequence[int]], typing.Optional[typing.List[int]], <class 'float'>, typing.Optional[float], typing.Sequence[float], typing.List[float], typing.Optional[typing.Sequence[float]], typing.Optional[typing.List[float]], <class 'bool'>, typing.Optional[bool], typing.Sequence[bool], typing.List[bool], typing.Optional[typing.Sequence[bool]], typing.Optional[typing.List[bool]], <class 'str'>, typing.Optional[str], typing.Union[int, float, bool], typing.Union[int, float, bool, NoneType], typing.Sequence[typing.Union[int, float, bool]], typing.List[typing.Union[int, float, bool]], <class 'torch.dtype'>, typing.Optional[torch.dtype], <class 'torch.device'>, typing.Optional[torch.device]]). Got func with signature (q: 'torch.Tensor', k: 'torch.Tensor', v: 'torch.Tensor', softmax_scale: 'float | None' = None, causal: 'bool' = False, qv: 'torch.Tensor | None' = None, q_descale: 'torch.Tensor | None' = None, k_descale: 'torch.Tensor | None' = None, v_descale: 'torch.Tensor | None' = None, attention_chunk: 'int' = 0, softcap: 'float' = 0.0, num_splits: 'int' = 1, pack_gqa: 'bool | None' = None, deterministic: 'bool' = False, sm_margin: 'int' = 0) -> 'tuple[torch.Tensor, torch.Tensor]')\n
+2026-08-19 06:20:34.685 | info | tcrgvaqg9soih2 | \n
+2026-08-19 06:20:34.685 | info | tcrgvaqg9soih2 | The above exception was the direct cause of the following exception:\n
+2026-08-19 06:20:34.685 | info | tcrgvaqg9soih2 | \n
+2026-08-19 06:20:34.685 | info | tcrgvaqg9soih2 | Traceback (most recent call last):\n
+2026-08-19 06:20:34.685 | info | tcrgvaqg9soih2 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/utils/import_utils.py", line 1015, in _get_module\n
+2026-08-19 06:20:34.685 | info | tcrgvaqg9soih2 |     return importlib.import_module("." + module_name, self.__name__)\n
+2026-08-19 06:20:34.686 | info | tcrgvaqg9soih2 |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:20:34.686 | info | tcrgvaqg9soih2 |   File "/usr/lib/python3.11/importlib/__init__.py", line 126, in import_module\n
+2026-08-19 06:20:34.686 | info | tcrgvaqg9soih2 |     return _bootstrap._gcd_import(name[level:], package, level)\n
+2026-08-19 06:20:34.686 | info | tcrgvaqg9soih2 |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:20:34.686 | info | tcrgvaqg9soih2 |   File "<frozen importlib._bootstrap>", line 1204, in _gcd_import\n
+2026-08-19 06:20:34.686 | info | tcrgvaqg9soih2 |   File "<frozen importlib._bootstrap>", line 1176, in _find_and_load\n
+2026-08-19 06:20:34.686 | info | tcrgvaqg9soih2 |   File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked\n
+2026-08-19 06:20:34.686 | info | tcrgvaqg9soih2 |   File "<frozen importlib._bootstrap>", line 690, in _load_unlocked\n
+2026-08-19 06:20:34.686 | info | tcrgvaqg9soih2 |   File "<frozen importlib._bootstrap_external>", line 940, in exec_module\n
+2026-08-19 06:20:34.687 | info | tcrgvaqg9soih2 |   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed\n
+2026-08-19 06:20:34.687 | info | tcrgvaqg9soih2 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/pipelines/pipeline_utils.py", line 55, in <module>\n
+2026-08-19 06:20:34.687 | info | tcrgvaqg9soih2 |     from ..models import AutoencoderKL\n
+2026-08-19 06:20:34.687 | info | tcrgvaqg9soih2 |   File "<frozen importlib._bootstrap>", line 1229, in _handle_fromlist\n
+2026-08-19 06:20:34.688 | info | tcrgvaqg9soih2 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/utils/import_utils.py", line 1005, in __getattr__\n
+2026-08-19 06:20:34.688 | info | tcrgvaqg9soih2 |     module = self._get_module(self._class_to_module[name])\n
+2026-08-19 06:20:34.688 | info | tcrgvaqg9soih2 |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:20:34.688 | info | tcrgvaqg9soih2 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/utils/import_utils.py", line 1017, in _get_module\n
+2026-08-19 06:20:34.688 | info | tcrgvaqg9soih2 |     raise RuntimeError(\n
+2026-08-19 06:20:34.688 | info | tcrgvaqg9soih2 | RuntimeError: Failed to import diffusers.models.autoencoders.autoencoder_kl because of the following error (look up to see its traceback):\n
+2026-08-19 06:20:34.689 | info | tcrgvaqg9soih2 | infer_schema(func): Parameter q has unsupported type torch.Tensor. The valid types are: dict_keys([<class 'torch.Tensor'>, typing.Optional[torch.Tensor], typing.Sequence[torch.Tensor], typing.List[torch.Tensor], typing.Sequence[typing.Optional[torch.Tensor]], typing.List[typing.Optional[torch.Tensor]], <class 'int'>, typing.Optional[int], typing.Sequence[int], typing.List[int], typing.Optional[typing.Sequence[int]], typing.Optional[typing.List[int]], <class 'float'>, typing.Optional[float], typing.Sequence[float], typing.List[float], typing.Optional[typing.Sequence[float]], typing.Optional[typing.List[float]], <class 'bool'>, typing.Optional[bool], typing.Sequence[bool], typing.List[bool], typing.Optional[typing.Sequence[bool]], typing.Optional[typing.List[bool]], <class 'str'>, typing.Optional[str], typing.Union[int, float, bool], typing.Union[int, float, bool, NoneType], typing.Sequence[typing.Union[int, float, bool]], typing.List[typing.Union[int, float, bool]], <class 'torch.dtype'>, typing.Optional[torch.dtype], <class 'torch.device'>, typing.Optional[torch.device]]). Got func with signature (q: 'torch.Tensor', k: 'torch.Tensor', v: 'torch.Tensor', softmax_scale: 'float | None' = None, causal: 'bool' = False, qv: 'torch.Tensor | None' = None, q_descale: 'torch.Tensor | None' = None, k_descale: 'torch.Tensor | None' = None, v_descale: 'torch.Tensor | None' = None, attention_chunk: 'int' = 0, softcap: 'float' = 0.0, num_splits: 'int' = 1, pack_gqa: 'bool | None' = None, deterministic: 'bool' = False, sm_margin: 'int' = 0) -> 'tuple[torch.Tensor, torch.Tensor]')\n
+2026-08-19 06:20:34.689 | info | tcrgvaqg9soih2 | \n
+2026-08-19 06:20:34.689 | info | tcrgvaqg9soih2 | The above exception was the direct cause of the following exception:\n
+2026-08-19 06:20:34.689 | info | tcrgvaqg9soih2 | \n
+2026-08-19 06:20:34.689 | info | tcrgvaqg9soih2 | Traceback (most recent call last):\n
+2026-08-19 06:20:34.689 | info | tcrgvaqg9soih2 |   File "/app/runpod/serverless_handler.py", line 25, in <module>\n
+2026-08-19 06:20:34.689 | info | tcrgvaqg9soih2 |     from inference import registry\n
+2026-08-19 06:20:34.689 | info | tcrgvaqg9soih2 |   File "/app/runpod/inference.py", line 23, in <module>\n
+2026-08-19 06:20:34.690 | info | tcrgvaqg9soih2 |     from diffusers import DiffusionPipeline\n
+2026-08-19 06:20:34.690 | info | tcrgvaqg9soih2 |   File "<frozen importlib._bootstrap>", line 1229, in _handle_fromlist\n
+2026-08-19 06:20:34.690 | info | tcrgvaqg9soih2 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/utils/import_utils.py", line 1006, in __getattr__\n
+2026-08-19 06:20:34.690 | info | tcrgvaqg9soih2 |     value = getattr(module, name)\n
+2026-08-19 06:20:34.690 | info | tcrgvaqg9soih2 |             ^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:20:34.690 | info | tcrgvaqg9soih2 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/utils/import_utils.py", line 1005, in __getattr__\n
+2026-08-19 06:20:34.690 | info | tcrgvaqg9soih2 |     module = self._get_module(self._class_to_module[name])\n
+2026-08-19 06:20:34.690 | info | tcrgvaqg9soih2 |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:20:34.690 | info | tcrgvaqg9soih2 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/utils/import_utils.py", line 1017, in _get_module\n
+2026-08-19 06:20:34.690 | info | tcrgvaqg9soih2 |     raise RuntimeError(\n
+2026-08-19 06:20:34.690 | info | tcrgvaqg9soih2 | RuntimeError: Failed to import diffusers.pipelines.pipeline_utils because of the following error (look up to see its traceback):\n
+2026-08-19 06:20:34.690 | info | tcrgvaqg9soih2 | Failed to import diffusers.models.autoencoders.autoencoder_kl because of the following error (look up to see its traceback):\n
+2026-08-19 06:20:34.691 | info | tcrgvaqg9soih2 | infer_schema(func): Parameter q has unsupported type torch.Tensor. The valid types are: dict_keys([<class 'torch.Tensor'>, typing.Optional[torch.Tensor], typing.Sequence[torch.Tensor], typing.List[torch.Tensor], typing.Sequence[typing.Optional[torch.Tensor]], typing.List[typing.Optional[torch.Tensor]], <class 'int'>, typing.Optional[int], typing.Sequence[int], typing.List[int], typing.Optional[typing.Sequence[int]], typing.Optional[typing.List[int]], <class 'float'>, typing.Optional[float], typing.Sequence[float], typing.List[float], typing.Optional[typing.Sequence[float]], typing.Optional[typing.List[float]], <class 'bool'>, typing.Optional[bool], typing.Sequence[bool], typing.List[bool], typing.Optional[typing.Sequence[bool]], typing.Optional[typing.List[bool]], <class 'str'>, typing.Optional[str], typing.Union[int, float, bool], typing.Union[int, float, bool, NoneType], typing.Sequence[typing.Union[int, float, bool]], typing.List[typing.Union[int, float, bool]], <class 'torch.dtype'>, typing.Optional[torch.dtype], <class 'torch.device'>, typing.Optional[torch.device]]). Got func with signature (q: 'torch.Tensor', k: 'torch.Tensor', v: 'torch.Tensor', softmax_scale: 'float | None' = None, causal: 'bool' = False, qv: 'torch.Tensor | None' = None, q_descale: 'torch.Tensor | None' = None, k_descale: 'torch.Tensor | None' = None, v_descale: 'torch.Tensor | None' = None, attention_chunk: 'int' = 0, softcap: 'float' = 0.0, num_splits: 'int' = 1, pack_gqa: 'bool | None' = None, deterministic: 'bool' = False, sm_margin: 'int' = 0) -> 'tuple[torch.Tensor, torch.Tensor]')\n
+2026-08-19 06:20:47.760 | error | tcrgvaqg9soih2 | worker exited with exit code 1
+2026-08-19 06:21:04.807 | error | tcrgvaqg9soih2 | worker exited with exit code 1
+2026-08-19 06:21:21.785 | error | tcrgvaqg9soih2 | worker exited with exit code 1
+2026-08-19 06:21:38.636 | error | tcrgvaqg9soih2 | worker exited with exit code 1
+2026-08-19 06:21:55.535 | error | tcrgvaqg9soih2 | worker exited with exit code 1
