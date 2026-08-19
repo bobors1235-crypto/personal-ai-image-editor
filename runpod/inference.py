@@ -53,9 +53,11 @@ def _load_qwen_edit_pipeline(model_id: str, dtype: Any, cache_dir: str):
 
     return QwenImageEditPlusPipeline.from_pretrained(
         model_id,
-        dtype=dtype,
+        # Diffusers 0.36.0 accepts torch_dtype.  Passing its newer `dtype`
+        # alias to this pipeline is silently ignored and loads 78GB of fp32
+        # weights, which then OOMs even an 80GB GPU.
+        torch_dtype=dtype,
         cache_dir=cache_dir,
-        trust_remote_code=True,
         low_cpu_mem_usage=True,
     )
 
