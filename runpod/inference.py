@@ -1,6 +1,7 @@
 """
 Inference Provider Layer for RunPod Image Editing.
 Features modular providers for FireRed-Image-Edit-1.1 and Qwen-Image-Edit-2511.
+Optimized with CPU offloading and VRAM tiling for 20B models.
 """
 
 import os
@@ -92,7 +93,6 @@ class FireRedProvider(InferenceProvider):
         device = "cuda"
 
         try:
-            # Try QwenImageEditPlusPipeline or fallback to DiffusionPipeline
             pipe = None
             try:
                 from diffusers import QwenImageEditPlusPipeline
@@ -111,18 +111,26 @@ class FireRedProvider(InferenceProvider):
                     trust_remote_code=True
                 )
 
+            # Apply memory optimizations for 20B parameters
+            if hasattr(pipe, "enable_model_cpu_offload"):
+                logger.info("Enabling model CPU offload (reduces VRAM from ~44GB to ~20GB)...")
+                pipe.enable_model_cpu_offload()
+            elif hasattr(pipe, "enable_sequential_cpu_offload"):
+                pipe.enable_sequential_cpu_offload()
+            else:
+                pipe.to(device)
+
+            if hasattr(pipe, "enable_attention_slicing"):
+                pipe.enable_attention_slicing(slice_size="auto")
+            if hasattr(pipe, "enable_vae_tiling"):
+                pipe.enable_vae_tiling()
+            if hasattr(pipe, "enable_vae_slicing"):
+                pipe.enable_vae_slicing()
+
             self.pipeline = pipe
-            self.pipeline.to(device)
-
-            # Enable memory optimizations if available
-            if hasattr(self.pipeline, "enable_attention_slicing"):
-                self.pipeline.enable_attention_slicing()
-            if hasattr(self.pipeline, "enable_vae_tiling"):
-                self.pipeline.enable_vae_tiling()
-
             self.is_loaded = True
             load_time = round(time.time() - start_t, 2)
-            logger.info(f"FireRed-Image-Edit-1.1 loaded successfully in {load_time}s on {device}.")
+            logger.info(f"FireRed-Image-Edit-1.1 loaded successfully in {load_time}s.")
             return True
         except Exception as e:
             logger.error(f"Failed to load FireRed model: {e}")
@@ -153,16 +161,15 @@ class FireRedProvider(InferenceProvider):
         actual_seed = seed if (seed is not None and seed >= 0) else random.randint(100000, 999999999)
         start_t = time.time()
 
-        # Step count and resolution tuning
-        max_dim = 1536 if quality == "high" else 1024
-        inference_steps = steps or (35 if quality == "high" else 25)
-        guidance = guidance_scale or (7.5 if identity_strength == "high" else 6.0)
+        # Step count and resolution tuning (1024 native for optimal fidelity and memory)
+        max_dim = 1024 if quality == "high" else 768
+        inference_steps = steps or (30 if quality == "high" else 20)
+        guidance = guidance_scale or (7.0 if identity_strength == "high" else 5.5)
 
         # Preprocess input image dimensions
         processed_image, orig_size = resize_image_aspect_ratio(image, max_dim=max_dim, multiple_of=64)
 
         if torch is None or self.pipeline is None:
-            # Mock behavior for local testing without full CUDA/weights
             time.sleep(1.0)
             result_img = processed_image.copy()
             proc_time = round(time.time() - start_t, 2)
@@ -173,10 +180,10 @@ class FireRedProvider(InferenceProvider):
                 "resolution": f"{processed_image.width}x{processed_image.height}"
             }
 
-        generator = torch.Generator(device=self.pipeline.device).manual_seed(actual_seed)
+        dev_target = "cuda" if torch.cuda.is_available() else "cpu"
+        generator = torch.Generator(device=dev_target).manual_seed(actual_seed)
 
         with torch.inference_mode():
-            # Robust inference call with parameter compatibility
             try:
                 output = self.pipeline(
                     prompt=prompt,
@@ -202,7 +209,7 @@ class FireRedProvider(InferenceProvider):
             "steps": inference_steps,
             "guidance_scale": guidance,
             "resolution": f"{result_img.width}x{result_img.height}",
-            "device": str(self.pipeline.device)
+            "device": dev_target
         }
         return result_img, actual_seed, proc_time, metadata
 
@@ -251,8 +258,22 @@ class QwenProvider(InferenceProvider):
                     trust_remote_code=True
                 )
 
+            if hasattr(pipe, "enable_model_cpu_offload"):
+                logger.info("Enabling model CPU offload for Qwen...")
+                pipe.enable_model_cpu_offload()
+            elif hasattr(pipe, "enable_sequential_cpu_offload"):
+                pipe.enable_sequential_cpu_offload()
+            else:
+                pipe.to(device)
+
+            if hasattr(pipe, "enable_attention_slicing"):
+                pipe.enable_attention_slicing(slice_size="auto")
+            if hasattr(pipe, "enable_vae_tiling"):
+                pipe.enable_vae_tiling()
+            if hasattr(pipe, "enable_vae_slicing"):
+                pipe.enable_vae_slicing()
+
             self.pipeline = pipe
-            self.pipeline.to(device)
             self.is_loaded = True
             load_time = round(time.time() - start_t, 2)
             logger.info(f"Qwen-Image-Edit-2511 loaded in {load_time}s.")
@@ -286,9 +307,9 @@ class QwenProvider(InferenceProvider):
         actual_seed = seed if (seed is not None and seed >= 0) else random.randint(100000, 999999999)
         start_t = time.time()
 
-        max_dim = 1536 if quality == "high" else 1024
-        inference_steps = steps or (40 if quality == "high" else 28)
-        guidance = guidance_scale or (8.0 if identity_strength == "high" else 6.5)
+        max_dim = 1024 if quality == "high" else 768
+        inference_steps = steps or (35 if quality == "high" else 24)
+        guidance = guidance_scale or (7.5 if identity_strength == "high" else 6.0)
 
         processed_image, orig_size = resize_image_aspect_ratio(image, max_dim=max_dim, multiple_of=64)
 
@@ -303,7 +324,8 @@ class QwenProvider(InferenceProvider):
                 "resolution": f"{processed_image.width}x{processed_image.height}"
             }
 
-        generator = torch.Generator(device=self.pipeline.device).manual_seed(actual_seed)
+        dev_target = "cuda" if torch.cuda.is_available() else "cpu"
+        generator = torch.Generator(device=dev_target).manual_seed(actual_seed)
 
         with torch.inference_mode():
             try:
@@ -331,7 +353,7 @@ class QwenProvider(InferenceProvider):
             "steps": inference_steps,
             "guidance_scale": guidance,
             "resolution": f"{result_img.width}x{result_img.height}",
-            "device": str(self.pipeline.device)
+            "device": dev_target
         }
         return result_img, actual_seed, proc_time, metadata
 

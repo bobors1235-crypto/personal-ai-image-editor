@@ -28,5 +28,6 @@ ENV PYTHONUNBUFFERED=1
 ENV PYTHONPATH=/app:/app/runpod
 ENV HF_HOME=/root/.cache/huggingface
 ENV TORCH_HOME=/root/.cache/torch
+ENV PYTORCH_CUDA_ALLOC_CONF="expandable_segments:True"
 
 CMD ["python", "-u", "/app/runpod/serverless_handler.py"]

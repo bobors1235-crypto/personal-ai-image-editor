@@ -1,0 +1,544 @@
+2026-08-19 06:52:28.977 | info | 2mk0ucbcb39214 |     module = self._get_module(self._class_to_module[name])\n
+2026-08-19 06:52:28.977 | info | 2mk0ucbcb39214 |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:52:28.977 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/utils/import_utils.py", line 1017, in _get_module\n
+2026-08-19 06:52:28.977 | info | 2mk0ucbcb39214 |     raise RuntimeError(\n
+2026-08-19 06:52:28.977 | info | 2mk0ucbcb39214 | RuntimeError: Failed to import diffusers.loaders.single_file_model because of the following error (look up to see its traceback):\n
+2026-08-19 06:52:28.977 | info | 2mk0ucbcb39214 | /usr/local/lib/python3.11/dist-packages/torchaudio/lib/libtorchaudio.so: undefined symbol: _ZN2at4_ops9fft_irfft4callERKNS_6TensorESt8optionalIN3c106SymIntEElS5_INS6_17basic_string_viewIcEEE\n
+2026-08-19 06:52:28.977 | info | 2mk0ucbcb39214 | \n
+2026-08-19 06:52:28.977 | info | 2mk0ucbcb39214 | The above exception was the direct cause of the following exception:\n
+2026-08-19 06:52:28.977 | info | 2mk0ucbcb39214 | \n
+2026-08-19 06:52:28.977 | info | 2mk0ucbcb39214 | Traceback (most recent call last):\n
+2026-08-19 06:52:28.977 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/utils/import_utils.py", line 1015, in _get_module\n
+2026-08-19 06:52:28.977 | info | 2mk0ucbcb39214 |     return importlib.import_module("." + module_name, self.__name__)\n
+2026-08-19 06:52:28.977 | info | 2mk0ucbcb39214 |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:52:28.977 | info | 2mk0ucbcb39214 |   File "/usr/lib/python3.11/importlib/__init__.py", line 126, in import_module\n
+2026-08-19 06:52:28.977 | info | 2mk0ucbcb39214 |     return _bootstrap._gcd_import(name[level:], package, level)\n
+2026-08-19 06:52:28.977 | info | 2mk0ucbcb39214 |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:52:28.977 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 1204, in _gcd_import\n
+2026-08-19 06:52:28.978 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 1176, in _find_and_load\n
+2026-08-19 06:52:28.978 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked\n
+2026-08-19 06:52:28.978 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 690, in _load_unlocked\n
+2026-08-19 06:52:28.978 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap_external>", line 940, in exec_module\n
+2026-08-19 06:52:28.978 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed\n
+2026-08-19 06:52:28.978 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/pipelines/pipeline_utils.py", line 55, in <module>\n
+2026-08-19 06:52:28.978 | info | 2mk0ucbcb39214 |     from ..models import AutoencoderKL\n
+2026-08-19 06:52:28.978 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 1229, in _handle_fromlist\n
+2026-08-19 06:52:28.978 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/utils/import_utils.py", line 1005, in __getattr__\n
+2026-08-19 06:52:28.978 | info | 2mk0ucbcb39214 |     module = self._get_module(self._class_to_module[name])\n
+2026-08-19 06:52:28.978 | info | 2mk0ucbcb39214 |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:52:28.978 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/utils/import_utils.py", line 1017, in _get_module\n
+2026-08-19 06:52:28.978 | info | 2mk0ucbcb39214 |     raise RuntimeError(\n
+2026-08-19 06:52:28.978 | info | 2mk0ucbcb39214 | RuntimeError: Failed to import diffusers.models.autoencoders.autoencoder_kl because of the following error (look up to see its traceback):\n
+2026-08-19 06:52:28.978 | info | 2mk0ucbcb39214 | Failed to import diffusers.loaders.single_file_model because of the following error (look up to see its traceback):\n
+2026-08-19 06:52:28.978 | info | 2mk0ucbcb39214 | /usr/local/lib/python3.11/dist-packages/torchaudio/lib/libtorchaudio.so: undefined symbol: _ZN2at4_ops9fft_irfft4callERKNS_6TensorESt8optionalIN3c106SymIntEElS5_INS6_17basic_string_viewIcEEE\n
+2026-08-19 06:52:28.978 | info | 2mk0ucbcb39214 | \n
+2026-08-19 06:52:28.978 | info | 2mk0ucbcb39214 | The above exception was the direct cause of the following exception:\n
+2026-08-19 06:52:28.978 | info | 2mk0ucbcb39214 | \n
+2026-08-19 06:52:28.978 | info | 2mk0ucbcb39214 | Traceback (most recent call last):\n
+2026-08-19 06:52:28.978 | info | 2mk0ucbcb39214 |   File "/app/runpod/serverless_handler.py", line 25, in <module>\n
+2026-08-19 06:52:28.978 | info | 2mk0ucbcb39214 |     from inference import registry\n
+2026-08-19 06:52:28.979 | info | 2mk0ucbcb39214 |   File "/app/runpod/inference.py", line 23, in <module>\n
+2026-08-19 06:52:28.979 | info | 2mk0ucbcb39214 |     from diffusers import DiffusionPipeline\n
+2026-08-19 06:52:28.979 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 1229, in _handle_fromlist\n
+2026-08-19 06:52:28.979 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/utils/import_utils.py", line 1006, in __getattr__\n
+2026-08-19 06:52:28.979 | info | 2mk0ucbcb39214 |     value = getattr(module, name)\n
+2026-08-19 06:52:28.979 | info | 2mk0ucbcb39214 |             ^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:52:28.979 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/utils/import_utils.py", line 1005, in __getattr__\n
+2026-08-19 06:52:28.979 | info | 2mk0ucbcb39214 |     module = self._get_module(self._class_to_module[name])\n
+2026-08-19 06:52:28.979 | info | 2mk0ucbcb39214 |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:52:28.979 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/utils/import_utils.py", line 1017, in _get_module\n
+2026-08-19 06:52:28.979 | info | 2mk0ucbcb39214 |     raise RuntimeError(\n
+2026-08-19 06:52:28.979 | info | 2mk0ucbcb39214 | RuntimeError: Failed to import diffusers.pipelines.pipeline_utils because of the following error (look up to see its traceback):\n
+2026-08-19 06:52:28.979 | info | 2mk0ucbcb39214 | Failed to import diffusers.models.autoencoders.autoencoder_kl because of the following error (look up to see its traceback):\n
+2026-08-19 06:52:28.979 | info | 2mk0ucbcb39214 | Failed to import diffusers.loaders.single_file_model because of the following error (look up to see its traceback):\n
+2026-08-19 06:52:28.979 | info | 2mk0ucbcb39214 | /usr/local/lib/python3.11/dist-packages/torchaudio/lib/libtorchaudio.so: undefined symbol: _ZN2at4_ops9fft_irfft4callERKNS_6TensorESt8optionalIN3c106SymIntEElS5_INS6_17basic_string_viewIcEEE\n
+2026-08-19 06:52:43.537 | error | 2mk0ucbcb39214 | worker exited with exit code 1
+2026-08-19 06:52:53.301 | info | 2mk0ucbcb39214 | \n
+2026-08-19 06:52:53.301 | info | 2mk0ucbcb39214 | ==========\n
+2026-08-19 06:52:53.301 | info | 2mk0ucbcb39214 | == CUDA ==\n
+2026-08-19 06:52:53.301 | info | 2mk0ucbcb39214 | ==========\n
+2026-08-19 06:52:53.301 | info | 2mk0ucbcb39214 | \n
+2026-08-19 06:52:53.302 | info | 2mk0ucbcb39214 | CUDA Version 12.4.1\n
+2026-08-19 06:52:53.302 | info | 2mk0ucbcb39214 | \n
+2026-08-19 06:52:53.302 | info | 2mk0ucbcb39214 | Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.\n
+2026-08-19 06:52:53.302 | info | 2mk0ucbcb39214 | \n
+2026-08-19 06:52:53.302 | info | 2mk0ucbcb39214 | This container image and its contents are governed by the NVIDIA Deep Learning Container License.\n
+2026-08-19 06:52:53.302 | info | 2mk0ucbcb39214 | By pulling and using the container, you accept the terms and conditions of this license:\n
+2026-08-19 06:52:53.302 | info | 2mk0ucbcb39214 | https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license\n
+2026-08-19 06:52:53.302 | info | 2mk0ucbcb39214 | \n
+2026-08-19 06:52:53.302 | info | 2mk0ucbcb39214 | A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.\n
+2026-08-19 06:52:53.302 | info | 2mk0ucbcb39214 | \n
+2026-08-19 06:52:53.302 | info | 2mk0ucbcb39214 | Traceback (most recent call last):\n
+2026-08-19 06:52:53.302 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/utils/import_utils.py", line 1015, in _get_module\n
+2026-08-19 06:52:53.302 | info | 2mk0ucbcb39214 |     return importlib.import_module("." + module_name, self.__name__)\n
+2026-08-19 06:52:53.302 | info | 2mk0ucbcb39214 |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:52:53.302 | info | 2mk0ucbcb39214 |   File "/usr/lib/python3.11/importlib/__init__.py", line 126, in import_module\n
+2026-08-19 06:52:53.302 | info | 2mk0ucbcb39214 |     return _bootstrap._gcd_import(name[level:], package, level)\n
+2026-08-19 06:52:53.302 | info | 2mk0ucbcb39214 |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:52:53.302 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 1204, in _gcd_import\n
+2026-08-19 06:52:53.302 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 1176, in _find_and_load\n
+2026-08-19 06:52:53.302 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked\n
+2026-08-19 06:52:53.302 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 690, in _load_unlocked\n
+2026-08-19 06:52:53.302 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap_external>", line 940, in exec_module\n
+2026-08-19 06:52:53.302 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed\n
+2026-08-19 06:52:53.302 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/loaders/single_file_model.py", line 32, in <module>\n
+2026-08-19 06:52:53.302 | info | 2mk0ucbcb39214 |     from .single_file_utils import (\n
+2026-08-19 06:52:53.302 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/loaders/single_file_utils.py", line 53, in <module>\n
+2026-08-19 06:52:53.303 | info | 2mk0ucbcb39214 |     from transformers import AutoImageProcessor\n
+2026-08-19 06:52:53.303 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 1229, in _handle_fromlist\n
+2026-08-19 06:52:53.303 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/transformers/utils/import_utils.py", line 2535, in __getattr__\n
+2026-08-19 06:52:53.303 | info | 2mk0ucbcb39214 |     module = self._get_module(self._class_to_module[name])\n
+2026-08-19 06:52:53.303 | info | 2mk0ucbcb39214 |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:52:53.303 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/transformers/utils/import_utils.py", line 2769, in _get_module\n
+2026-08-19 06:52:53.303 | info | 2mk0ucbcb39214 |     raise e\n
+2026-08-19 06:52:53.303 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/transformers/utils/import_utils.py", line 2767, in _get_module\n
+2026-08-19 06:52:53.303 | info | 2mk0ucbcb39214 |     return importlib.import_module("." + module_name, self.__name__)\n
+2026-08-19 06:52:53.303 | info | 2mk0ucbcb39214 |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:52:53.303 | info | 2mk0ucbcb39214 |   File "/usr/lib/python3.11/importlib/__init__.py", line 126, in import_module\n
+2026-08-19 06:52:53.303 | info | 2mk0ucbcb39214 |     return _bootstrap._gcd_import(name[level:], package, level)\n
+2026-08-19 06:52:53.303 | info | 2mk0ucbcb39214 |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:52:53.303 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/transformers/models/auto/image_processing_auto.py", line 24, in <module>\n
+2026-08-19 06:52:53.303 | info | 2mk0ucbcb39214 |     from ...image_processing_utils import ImageProcessingMixin\n
+2026-08-19 06:52:53.303 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/transformers/image_processing_utils.py", line 34, in <module>\n
+2026-08-19 06:52:53.303 | info | 2mk0ucbcb39214 |     from .processing_utils import ImagesKwargs, Unpack\n
+2026-08-19 06:52:53.303 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/transformers/processing_utils.py", line 38, in <module>\n
+2026-08-19 06:52:53.303 | info | 2mk0ucbcb39214 |     from .audio_utils import AudioInput, load_audio, make_list_of_audio\n
+2026-08-19 06:52:53.303 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/transformers/audio_utils.py", line 58, in <module>\n
+2026-08-19 06:52:53.303 | info | 2mk0ucbcb39214 |     import torchaudio\n
+2026-08-19 06:52:53.303 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/torchaudio/__init__.py", line 2, in <module>\n
+2026-08-19 06:52:53.303 | info | 2mk0ucbcb39214 |     from . import _extension  # noqa  # usort: skip\n
+2026-08-19 06:52:53.303 | info | 2mk0ucbcb39214 |     ^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:52:53.303 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/torchaudio/_extension/__init__.py", line 38, in <module>\n
+2026-08-19 06:52:53.303 | info | 2mk0ucbcb39214 |     _load_lib("libtorchaudio")\n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/torchaudio/_extension/utils.py", line 60, in _load_lib\n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 |     torch.ops.load_library(path)\n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/torch/_ops.py", line 1357, in load_library\n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 |     ctypes.CDLL(path)\n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 |   File "/usr/lib/python3.11/ctypes/__init__.py", line 376, in __init__\n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 |     self._handle = _dlopen(self._name, mode)\n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 |                    ^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 | OSError: /usr/local/lib/python3.11/dist-packages/torchaudio/lib/libtorchaudio.so: undefined symbol: _ZN2at4_ops9fft_irfft4callERKNS_6TensorESt8optionalIN3c106SymIntEElS5_INS6_17basic_string_viewIcEEE\n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 | \n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 | The above exception was the direct cause of the following exception:\n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 | \n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 | Traceback (most recent call last):\n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/utils/import_utils.py", line 1015, in _get_module\n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 |     return importlib.import_module("." + module_name, self.__name__)\n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 |   File "/usr/lib/python3.11/importlib/__init__.py", line 126, in import_module\n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 |     return _bootstrap._gcd_import(name[level:], package, level)\n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 1204, in _gcd_import\n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 1176, in _find_and_load\n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 1126, in _find_and_load_unlocked\n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed\n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 1204, in _gcd_import\n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 1176, in _find_and_load\n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked\n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 690, in _load_unlocked\n
+2026-08-19 06:52:53.304 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap_external>", line 940, in exec_module\n
+2026-08-19 06:52:53.305 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed\n
+2026-08-19 06:52:53.305 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/models/autoencoders/__init__.py", line 1, in <module>\n
+2026-08-19 06:52:53.305 | info | 2mk0ucbcb39214 |     from .autoencoder_asym_kl import AsymmetricAutoencoderKL\n
+2026-08-19 06:52:53.305 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/models/autoencoders/autoencoder_asym_kl.py", line 21, in <module>\n
+2026-08-19 06:52:53.305 | info | 2mk0ucbcb39214 |     from .vae import AutoencoderMixin, DecoderOutput, DiagonalGaussianDistribution, Encoder, MaskConditionDecoder\n
+2026-08-19 06:52:53.305 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/models/autoencoders/vae.py", line 24, in <module>\n
+2026-08-19 06:52:53.305 | info | 2mk0ucbcb39214 |     from ..unets.unet_2d_blocks import (\n
+2026-08-19 06:52:53.305 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/models/unets/__init__.py", line 6, in <module>\n
+2026-08-19 06:52:53.305 | info | 2mk0ucbcb39214 |     from .unet_2d import UNet2DModel\n
+2026-08-19 06:52:53.305 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/models/unets/unet_2d.py", line 23, in <module>\n
+2026-08-19 06:52:53.305 | info | 2mk0ucbcb39214 |     from .unet_2d_blocks import UNetMidBlock2D, get_down_block, get_up_block\n
+2026-08-19 06:52:53.305 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/models/unets/unet_2d_blocks.py", line 36, in <module>\n
+2026-08-19 06:52:53.305 | info | 2mk0ucbcb39214 |     from ..transformers.dual_transformer_2d import DualTransformer2DModel\n
+2026-08-19 06:52:53.305 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/models/transformers/__init__.py", line 6, in <module>\n
+2026-08-19 06:52:53.305 | info | 2mk0ucbcb39214 |     from .auraflow_transformer_2d import AuraFlowTransformer2DModel\n
+2026-08-19 06:52:53.305 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/models/transformers/auraflow_transformer_2d.py", line 23, in <module>\n
+2026-08-19 06:52:53.305 | info | 2mk0ucbcb39214 |     from ...loaders import FromOriginalModelMixin, PeftAdapterMixin\n
+2026-08-19 06:52:53.305 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 1229, in _handle_fromlist\n
+2026-08-19 06:52:53.305 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/utils/import_utils.py", line 1005, in __getattr__\n
+2026-08-19 06:52:53.305 | info | 2mk0ucbcb39214 |     module = self._get_module(self._class_to_module[name])\n
+2026-08-19 06:52:53.305 | info | 2mk0ucbcb39214 |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:52:53.305 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/utils/import_utils.py", line 1017, in _get_module\n
+2026-08-19 06:52:53.305 | info | 2mk0ucbcb39214 |     raise RuntimeError(\n
+2026-08-19 06:52:53.305 | info | 2mk0ucbcb39214 | RuntimeError: Failed to import diffusers.loaders.single_file_model because of the following error (look up to see its traceback):\n
+2026-08-19 06:52:53.305 | info | 2mk0ucbcb39214 | /usr/local/lib/python3.11/dist-packages/torchaudio/lib/libtorchaudio.so: undefined symbol: _ZN2at4_ops9fft_irfft4callERKNS_6TensorESt8optionalIN3c106SymIntEElS5_INS6_17basic_string_viewIcEEE\n
+2026-08-19 06:52:53.305 | info | 2mk0ucbcb39214 | \n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 | The above exception was the direct cause of the following exception:\n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 | \n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 | Traceback (most recent call last):\n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/utils/import_utils.py", line 1015, in _get_module\n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 |     return importlib.import_module("." + module_name, self.__name__)\n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 |   File "/usr/lib/python3.11/importlib/__init__.py", line 126, in import_module\n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 |     return _bootstrap._gcd_import(name[level:], package, level)\n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 1204, in _gcd_import\n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 1176, in _find_and_load\n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked\n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 690, in _load_unlocked\n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap_external>", line 940, in exec_module\n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed\n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/pipelines/pipeline_utils.py", line 55, in <module>\n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 |     from ..models import AutoencoderKL\n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 1229, in _handle_fromlist\n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/utils/import_utils.py", line 1005, in __getattr__\n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 |     module = self._get_module(self._class_to_module[name])\n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/utils/import_utils.py", line 1017, in _get_module\n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 |     raise RuntimeError(\n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 | RuntimeError: Failed to import diffusers.models.autoencoders.autoencoder_kl because of the following error (look up to see its traceback):\n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 | Failed to import diffusers.loaders.single_file_model because of the following error (look up to see its traceback):\n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 | /usr/local/lib/python3.11/dist-packages/torchaudio/lib/libtorchaudio.so: undefined symbol: _ZN2at4_ops9fft_irfft4callERKNS_6TensorESt8optionalIN3c106SymIntEElS5_INS6_17basic_string_viewIcEEE\n
+2026-08-19 06:52:53.306 | info | 2mk0ucbcb39214 | \n
+2026-08-19 06:52:53.307 | info | 2mk0ucbcb39214 | The above exception was the direct cause of the following exception:\n
+2026-08-19 06:52:53.307 | info | 2mk0ucbcb39214 | \n
+2026-08-19 06:52:53.307 | info | 2mk0ucbcb39214 | Traceback (most recent call last):\n
+2026-08-19 06:52:53.307 | info | 2mk0ucbcb39214 |   File "/app/runpod/serverless_handler.py", line 25, in <module>\n
+2026-08-19 06:52:53.307 | info | 2mk0ucbcb39214 |     from inference import registry\n
+2026-08-19 06:52:53.307 | info | 2mk0ucbcb39214 |   File "/app/runpod/inference.py", line 23, in <module>\n
+2026-08-19 06:52:53.307 | info | 2mk0ucbcb39214 |     from diffusers import DiffusionPipeline\n
+2026-08-19 06:52:53.307 | info | 2mk0ucbcb39214 |   File "<frozen importlib._bootstrap>", line 1229, in _handle_fromlist\n
+2026-08-19 06:52:53.307 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/utils/import_utils.py", line 1006, in __getattr__\n
+2026-08-19 06:52:53.307 | info | 2mk0ucbcb39214 |     value = getattr(module, name)\n
+2026-08-19 06:52:53.307 | info | 2mk0ucbcb39214 |             ^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:52:53.307 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/utils/import_utils.py", line 1005, in __getattr__\n
+2026-08-19 06:52:53.307 | info | 2mk0ucbcb39214 |     module = self._get_module(self._class_to_module[name])\n
+2026-08-19 06:52:53.307 | info | 2mk0ucbcb39214 |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 06:52:53.307 | info | 2mk0ucbcb39214 |   File "/usr/local/lib/python3.11/dist-packages/diffusers/utils/import_utils.py", line 1017, in _get_module\n
+2026-08-19 06:52:53.307 | info | 2mk0ucbcb39214 |     raise RuntimeError(\n
+2026-08-19 06:52:53.307 | info | 2mk0ucbcb39214 | RuntimeError: Failed to import diffusers.pipelines.pipeline_utils because of the following error (look up to see its traceback):\n
+2026-08-19 06:52:53.307 | info | 2mk0ucbcb39214 | Failed to import diffusers.models.autoencoders.autoencoder_kl because of the following error (look up to see its traceback):\n
+2026-08-19 06:52:53.307 | info | 2mk0ucbcb39214 | Failed to import diffusers.loaders.single_file_model because of the following error (look up to see its traceback):\n
+2026-08-19 06:52:53.307 | info | 2mk0ucbcb39214 | /usr/local/lib/python3.11/dist-packages/torchaudio/lib/libtorchaudio.so: undefined symbol: _ZN2at4_ops9fft_irfft4callERKNS_6TensorESt8optionalIN3c106SymIntEElS5_INS6_17basic_string_viewIcEEE\n
+2026-08-19 06:53:19.445 | error | 2mk0ucbcb39214 | worker exited with exit code 1
+2026-08-19 06:53:37.076 | error | 2mk0ucbcb39214 | worker exited with exit code 1
+2026-08-19 06:53:45.053 | error | 2mk0ucbcb39214 | worker exited with exit code 1
+2026-08-19 17:01:34.892 | error | rrmxm7y7uttbfm | worker exited with exit code 1
+2026-08-19 17:01:43.797 | error | rrmxm7y7uttbfm | worker exited with exit code 1
+2026-08-19 17:24:24.611 | info | o9z6dp2ddsyshk | \n
+2026-08-19 17:24:24.611 | info | o9z6dp2ddsyshk | ==========\n
+2026-08-19 17:24:24.611 | info | o9z6dp2ddsyshk | == CUDA ==\n
+2026-08-19 17:24:24.611 | info | o9z6dp2ddsyshk | ==========\n
+2026-08-19 17:24:24.611 | info | o9z6dp2ddsyshk | \n
+2026-08-19 17:24:24.611 | info | o9z6dp2ddsyshk | CUDA Version 12.4.1\n
+2026-08-19 17:24:24.612 | info | o9z6dp2ddsyshk | \n
+2026-08-19 17:24:24.612 | info | o9z6dp2ddsyshk | Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.\n
+2026-08-19 17:24:24.612 | info | o9z6dp2ddsyshk | \n
+2026-08-19 17:24:24.612 | info | o9z6dp2ddsyshk | This container image and its contents are governed by the NVIDIA Deep Learning Container License.\n
+2026-08-19 17:24:24.612 | info | o9z6dp2ddsyshk | By pulling and using the container, you accept the terms and conditions of this license:\n
+2026-08-19 17:24:24.612 | info | o9z6dp2ddsyshk | https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license\n
+2026-08-19 17:24:24.612 | info | o9z6dp2ddsyshk | \n
+2026-08-19 17:24:24.612 | info | o9z6dp2ddsyshk | A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.\n
+2026-08-19 17:24:24.612 | info | o9z6dp2ddsyshk | \n
+2026-08-19 17:24:24.612 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:18,094 [INFO] serverless_worker: Starting RunPod Serverless worker listener loop...\n
+2026-08-19 17:24:24.612 | info | o9z6dp2ddsyshk | --- Starting Serverless Worker |  Version 1.12.0 ---\n
+2026-08-19 17:24:24.612 | info | o9z6dp2ddsyshk | Running 7 fitness check(s)...
+2026-08-19 17:24:24.612 | info | o9z6dp2ddsyshk | GPU binary test passed: 1 GPU(s) healthy (CUDA 12.8)
+2026-08-19 17:24:24.612 | info | o9z6dp2ddsyshk | Memory check passed: 450.17GB available (of 503.51GB total)
+2026-08-19 17:24:24.612 | info | o9z6dp2ddsyshk | Disk space check passed: 49.98GB free (100.0% available)
+2026-08-19 17:24:24.612 | info | o9z6dp2ddsyshk | Network connectivity passed: Connected to 8.8.8.8 (7ms)
+2026-08-19 17:24:24.612 | info | o9z6dp2ddsyshk | CUDA version check passed: 12.4 (minimum: 11.8)
+2026-08-19 17:24:24.612 | info | o9z6dp2ddsyshk | CUDA initialization passed: 1 device(s) initialized successfully
+2026-08-19 17:24:24.612 | info | o9z6dp2ddsyshk | GPU compute benchmark passed: Matrix multiply completed in 116ms
+2026-08-19 17:24:24.612 | info | o9z6dp2ddsyshk | All fitness checks passed. (2483.92ms)
+2026-08-19 17:24:24.613 | info | o9z6dp2ddsyshk | Jobs in queue: 1
+2026-08-19 17:24:24.613 | info | o9z6dp2ddsyshk | Jobs in progress: 1
+2026-08-19 17:24:24.613 | info | o9z6dp2ddsyshk | Started.
+2026-08-19 17:24:24.613 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:24,610 [INFO] serverless_worker: Loading FireRed-Image-Edit-1.1 into VRAM for job...\n
+2026-08-19 17:24:24.824 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:24,611 [INFO] inference: Loading FireRed-Image-Edit-1.1 from FireRedTeam/FireRed-Image-Edit-1.1...\n
+2026-08-19 17:24:24.824 | info | o9z6dp2ddsyshk | /usr/local/lib/python3.11/dist-packages/diffusers/utils/deprecation_utils.py:23: FutureWarning: `torch_dtype` is deprecated and will be removed in version 1.0.0. Please use `dtype` instead.\n
+2026-08-19 17:24:24.824 | info | o9z6dp2ddsyshk |   deprecate("torch_dtype", "1.0.0", _TORCH_DTYPE_DEPRECATION_MESSAGE)\n
+2026-08-19 17:24:24.824 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:24,823 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/agent-harnesses "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:24.953 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:24,953 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/models/FireRedTeam/FireRed-Image-Edit-1.1 "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:25.095 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,094 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/main/model_index.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:24:25.266 | info | o9z6dp2ddsyshk | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n
+2026-08-19 17:24:25.266 | warning | o9z6dp2ddsyshk | 2026-08-19 14:24:25,095 [WARNING] huggingface_hub.utils._http: Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n
+2026-08-19 17:24:25.266 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,102 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/model_index.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:25.266 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,112 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/model_index.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:25.266 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,265 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/models/FireRedTeam/FireRed-Image-Edit-1.1/revision/main "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:25.399 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,398 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/models/FireRedTeam/FireRed-Image-Edit-1.1/tree/3bc3f2a12722fd9883eb6357500de191d56baaf5?recursive=true&expand=false "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:25.533 | info | o9z6dp2ddsyshk | \rFetching 32 files:   0%|          | 0/32 [00:00<?, ?it/s]2026-08-19 14:24:25,532 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor/chat_template.jinja "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:24:25.673 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,538 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fchat_template.jinja "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:25.674 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,544 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fchat_template.jinja "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:25.674 | info | o9z6dp2ddsyshk | \rFetching 32 files:   6%|▋         | 2/32 [00:00<00:02, 14.40it/s]2026-08-19 14:24:25,558 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor/merges.txt "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:24:25.674 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,560 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor/added_tokens.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:24:25.674 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,560 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor/special_tokens_map.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:24:25.674 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,565 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fmerges.txt "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:25.674 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,566 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:24:25.674 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,568 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fadded_tokens.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:25.674 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,569 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor/video_preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:24:25.674 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,574 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fspecial_tokens_map.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:25.674 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,576 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fpreprocessor_config.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:25.674 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,578 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:24:25.674 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,584 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fvideo_preprocessor_config.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:25.674 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,588 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Ftokenizer_config.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:25.675 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,591 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fmerges.txt "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:25.675 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,596 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fadded_tokens.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:25.675 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,600 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fspecial_tokens_map.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:25.675 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,602 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fpreprocessor_config.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:25.675 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,604 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fvideo_preprocessor_config.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:25.675 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,617 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Ftokenizer_config.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:25.675 | info | o9z6dp2ddsyshk | \rFetching 32 files:  25%|██▌       | 8/32 [00:00<00:00, 34.29it/s]2026-08-19 14:24:25,673 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor/vocab.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:24:25.898 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,680 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fvocab.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:25.898 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,688 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fvocab.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:25.898 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,742 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/text_encoder/config.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:24:25.898 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,750 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/scheduler/scheduler_config.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:24:25.898 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,753 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/text_encoder%2Fconfig.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:25.898 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,760 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/scheduler%2Fscheduler_config.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:25.898 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,764 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/text_encoder%2Fconfig.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:25.898 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,770 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/scheduler%2Fscheduler_config.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:25.898 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,897 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/text_encoder/model.safetensors.index.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:24:26.045 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,901 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer/added_tokens.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:24:26.045 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,904 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer/chat_template.jinja "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:24:26.045 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,910 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer%2Fadded_tokens.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:26.045 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,912 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/text_encoder%2Fmodel.safetensors.index.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:26.045 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,915 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer%2Fchat_template.jinja "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:26.045 | info | o9z6dp2ddsyshk | \rFetching 32 files:  38%|███▊      | 12/32 [00:00<00:00, 22.70it/s]2026-08-19 14:24:25,927 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/text_encoder%2Fmodel.safetensors.index.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:26.045 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:25,931 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer%2Fchat_template.jinja "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:26.045 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:26,044 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer/merges.txt "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:24:26.177 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:26,052 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer%2Fmerges.txt "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:26.177 | info | o9z6dp2ddsyshk | \rFetching 32 files:  47%|████▋     | 15/32 [00:00<00:00, 22.46it/s]2026-08-19 14:24:26,059 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer/special_tokens_map.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:24:26.178 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:26,063 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:24:26.178 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:26,068 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer%2Fspecial_tokens_map.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:26.178 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:26,071 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer%2Ftokenizer_config.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:26.178 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:26,082 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer%2Ftokenizer_config.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:26.178 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:26,177 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer/vocab.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:24:48.324 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:26,184 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer%2Fvocab.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:48.324 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:26,192 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer%2Fvocab.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:48.324 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:26,199 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/transformer/config.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:24:48.324 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:26,206 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/transformer%2Fconfig.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:48.324 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:26,218 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/transformer%2Fconfig.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:48.324 | info | o9z6dp2ddsyshk | \rFetching 32 files:  56%|█████▋    | 18/32 [00:00<00:00, 20.83it/s]\rFetching 32 files:  66%|██████▌   | 21/32 [00:16<00:17,  1.62s/it]\rFetching 32 files:  69%|██████▉   | 22/32 [00:22<00:22,  2.25s/it]2026-08-19 14:24:48,323 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/transformer/diffusion_pytorch_model.safetensors.index.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:24:48.476 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:48,332 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/transformer%2Fdiffusion_pytorch_model.safetensors.index.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:48.476 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:48,342 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/transformer%2Fdiffusion_pytorch_model.safetensors.index.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:24:48.476 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:48,476 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/vae/config.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:25:21.665 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:48,484 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/vae%2Fconfig.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:25:21.665 | info | o9z6dp2ddsyshk | 2026-08-19 14:24:48,494 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/vae%2Fconfig.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:25:21.665 | info | o9z6dp2ddsyshk | \rFetching 32 files:  75%|███████▌  | 24/32 [00:23<00:13,  1.69s/it]\rFetching 32 files:  81%|████████▏ | 26/32 [00:29<00:12,  2.05s/it]\rFetching 32 files:  88%|████████▊ | 28/32 [00:30<00:06,  1.66s/it]\rFetching 32 files:  88%|████████▊ | 28/32 [00:56<00:08,  2.01s/it]\n
+2026-08-19 17:25:21.816 | info | o9z6dp2ddsyshk | 2026-08-19 14:25:21,665 [INFO] inference: Direct QwenImageEditPlusPipeline load notice: Task error: File reconstruction error: IO Error: No space left on device (os error 28). Falling back to DiffusionPipeline...\n
+2026-08-19 17:25:21.816 | info | o9z6dp2ddsyshk | 2026-08-19 14:25:21,815 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/models/FireRedTeam/FireRed-Image-Edit-1.1 "HTTP/1.1 200 OK"\n
+2026-08-19 17:25:21.950 | info | o9z6dp2ddsyshk | 2026-08-19 14:25:21,949 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/main/model_index.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:25:22.099 | info | o9z6dp2ddsyshk | 2026-08-19 14:25:21,957 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/model_index.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:25:22.100 | info | o9z6dp2ddsyshk | 2026-08-19 14:25:22,099 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/models/FireRedTeam/FireRed-Image-Edit-1.1/revision/main "HTTP/1.1 200 OK"\n
+2026-08-19 17:25:59.883 | info | o9z6dp2ddsyshk | \rFetching 32 files:   0%|          | 0/32 [00:00<?, ?it/s]\rFetching 32 files:  91%|█████████ | 29/32 [00:37<00:03,  1.30s/it]\n
+2026-08-19 17:26:00.076 | error | o9z6dp2ddsyshk | 2026-08-19 14:25:59,883 [ERROR] inference: Failed to load FireRed model: Task error: File reconstruction error: IO Error: No space left on device (os error 28)\n
+2026-08-19 17:26:00.077 | info | o9z6dp2ddsyshk | 2026-08-19 14:26:00,076 [INFO] model_loader: Cleared PyTorch CUDA VRAM cache.\n
+2026-08-19 17:26:00.340 | info | o9z6dp2ddsyshk | 2026-08-19 14:26:00,076 [INFO] inference: FireRed-Image-Edit-1.1 unloaded.\n
+2026-08-19 17:26:00.340 | error | o9z6dp2ddsyshk | 2026-08-19 14:26:00,076 [ERROR] serverless_worker: Error in serverless handler: Task error: File reconstruction error: IO Error: No space left on device (os error 28)\n
+2026-08-19 17:26:00.340 | info | o9z6dp2ddsyshk | Traceback (most recent call last):\n
+2026-08-19 17:26:00.340 | info | o9z6dp2ddsyshk |   File "/app/runpod/inference.py", line 99, in load\n
+2026-08-19 17:26:00.340 | info | o9z6dp2ddsyshk |     pipe = QwenImageEditPlusPipeline.from_pretrained(\n
+2026-08-19 17:26:00.340 | info | o9z6dp2ddsyshk |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 17:26:00.340 | info | o9z6dp2ddsyshk |   File "/usr/local/lib/python3.11/dist-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn\n
+2026-08-19 17:26:00.341 | info | o9z6dp2ddsyshk |     return fn(*args, **kwargs)\n
+2026-08-19 17:26:00.341 | info | o9z6dp2ddsyshk |            ^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 17:26:00.341 | info | o9z6dp2ddsyshk |   File "/usr/local/lib/python3.11/dist-packages/diffusers/pipelines/pipeline_utils.py", line 880, in from_pretrained\n
+2026-08-19 17:26:00.341 | info | o9z6dp2ddsyshk |     cached_folder = cls.download(\n
+2026-08-19 17:26:00.341 | info | o9z6dp2ddsyshk |                     ^^^^^^^^^^^^^\n
+2026-08-19 17:26:00.341 | info | o9z6dp2ddsyshk |   File "/usr/local/lib/python3.11/dist-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn\n
+2026-08-19 17:26:00.341 | info | o9z6dp2ddsyshk |     return fn(*args, **kwargs)\n
+2026-08-19 17:26:00.341 | info | o9z6dp2ddsyshk |            ^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 17:26:00.341 | info | o9z6dp2ddsyshk |   File "/usr/local/lib/python3.11/dist-packages/diffusers/pipelines/pipeline_utils.py", line 1815, in download\n
+2026-08-19 17:26:00.341 | info | o9z6dp2ddsyshk |     cached_folder = snapshot_download(\n
+2026-08-19 17:26:00.341 | info | o9z6dp2ddsyshk |                     ^^^^^^^^^^^^^^^^^^\n
+2026-08-19 17:26:00.341 | info | o9z6dp2ddsyshk |   File "/usr/local/lib/python3.11/dist-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn\n
+2026-08-19 17:26:00.341 | info | o9z6dp2ddsyshk |     return fn(*args, **kwargs)\n
+2026-08-19 17:26:00.341 | info | o9z6dp2ddsyshk |            ^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 17:26:00.341 | info | o9z6dp2ddsyshk |   File "/usr/local/lib/python3.11/dist-packages/huggingface_hub/_snapshot_download.py", line 522, in snapshot_download\n
+2026-08-19 17:26:00.341 | info | o9z6dp2ddsyshk |     hf_thread_map(\n
+2026-08-19 17:26:00.341 | info | o9z6dp2ddsyshk |   File "/usr/local/lib/python3.11/dist-packages/huggingface_hub/utils/tqdm.py", line 441, in hf_thread_map\n
+2026-08-19 17:26:00.341 | info | o9z6dp2ddsyshk |     results[future_to_index[future]] = future.result()\n
+2026-08-19 17:26:00.341 | info | o9z6dp2ddsyshk |                                        ^^^^^^^^^^^^^^^\n
+2026-08-19 17:26:00.341 | info | o9z6dp2ddsyshk |   File "/usr/lib/python3.11/concurrent/futures/_base.py", line 449, in result\n
+2026-08-19 17:26:00.341 | info | o9z6dp2ddsyshk |     return self.__get_result()\n
+2026-08-19 17:26:00.341 | info | o9z6dp2ddsyshk |            ^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 17:26:00.341 | info | o9z6dp2ddsyshk |   File "/usr/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result\n
+2026-08-19 17:26:00.342 | info | o9z6dp2ddsyshk |     raise self._exception\n
+2026-08-19 17:26:00.342 | info | o9z6dp2ddsyshk |   File "/usr/lib/python3.11/concurrent/futures/thread.py", line 58, in run\n
+2026-08-19 17:26:00.342 | info | o9z6dp2ddsyshk |     result = self.fn(*self.args, **self.kwargs)\n
+2026-08-19 17:26:00.342 | info | o9z6dp2ddsyshk |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 17:26:00.342 | info | o9z6dp2ddsyshk |   File "/usr/local/lib/python3.11/dist-packages/huggingface_hub/_snapshot_download.py", line 502, in _inner_hf_hub_download\n
+2026-08-19 17:26:00.342 | info | o9z6dp2ddsyshk |     hf_hub_download(  # type: ignore\n
+2026-08-19 17:26:00.342 | info | o9z6dp2ddsyshk |   File "/usr/local/lib/python3.11/dist-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn\n
+2026-08-19 17:26:00.342 | info | o9z6dp2ddsyshk |     return fn(*args, **kwargs)\n
+2026-08-19 17:26:00.342 | info | o9z6dp2ddsyshk |            ^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 17:26:00.342 | info | o9z6dp2ddsyshk |   File "/usr/local/lib/python3.11/dist-packages/huggingface_hub/file_download.py", line 1019, in hf_hub_download\n
+2026-08-19 17:26:00.342 | info | o9z6dp2ddsyshk |     return _hf_hub_download_to_cache_dir(\n
+2026-08-19 17:26:00.342 | info | o9z6dp2ddsyshk |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 17:26:00.342 | info | o9z6dp2ddsyshk |   File "/usr/local/lib/python3.11/dist-packages/huggingface_hub/file_download.py", line 1242, in _hf_hub_download_to_cache_dir\n
+2026-08-19 17:26:00.342 | info | o9z6dp2ddsyshk |     _download_to_tmp_and_move(\n
+2026-08-19 17:26:00.342 | info | o9z6dp2ddsyshk |   File "/usr/local/lib/python3.11/dist-packages/huggingface_hub/file_download.py", line 1961, in _download_to_tmp_and_move\n
+2026-08-19 17:26:00.342 | info | o9z6dp2ddsyshk |     xet_get(\n
+2026-08-19 17:26:00.342 | info | o9z6dp2ddsyshk |   File "/usr/local/lib/python3.11/dist-packages/huggingface_hub/file_download.py", line 565, in xet_get\n
+2026-08-19 17:26:00.342 | info | o9z6dp2ddsyshk |     with session.new_file_download_group(\n
+2026-08-19 17:26:00.342 | info | o9z6dp2ddsyshk | RuntimeError: Task error: File reconstruction error: IO Error: No space left on device (os error 28)\n
+2026-08-19 17:26:00.342 | info | o9z6dp2ddsyshk | \n
+2026-08-19 17:26:00.342 | info | o9z6dp2ddsyshk | During handling of the above exception, another exception occurred:\n
+2026-08-19 17:26:00.342 | info | o9z6dp2ddsyshk | \n
+2026-08-19 17:26:00.343 | info | o9z6dp2ddsyshk | Traceback (most recent call last):\n
+2026-08-19 17:26:00.343 | info | o9z6dp2ddsyshk |   File "/app/runpod/serverless_handler.py", line 61, in serverless_handler\n
+2026-08-19 17:26:00.343 | info | o9z6dp2ddsyshk |     provider.load()\n
+2026-08-19 17:26:00.343 | info | o9z6dp2ddsyshk |   File "/app/runpod/inference.py", line 130, in load\n
+2026-08-19 17:26:00.343 | info | o9z6dp2ddsyshk |     raise e\n
+2026-08-19 17:26:00.343 | info | o9z6dp2ddsyshk |   File "/app/runpod/inference.py", line 107, in load\n
+2026-08-19 17:26:00.343 | info | o9z6dp2ddsyshk |     pipe = DiffusionPipeline.from_pretrained(\n
+2026-08-19 17:26:00.343 | info | o9z6dp2ddsyshk |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 17:26:00.343 | info | o9z6dp2ddsyshk |   File "/usr/local/lib/python3.11/dist-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn\n
+2026-08-19 17:26:00.343 | info | o9z6dp2ddsyshk |     return fn(*args, **kwargs)\n
+2026-08-19 17:26:00.343 | info | o9z6dp2ddsyshk |            ^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 17:26:00.343 | info | o9z6dp2ddsyshk |   File "/usr/local/lib/python3.11/dist-packages/diffusers/pipelines/pipeline_utils.py", line 880, in from_pretrained\n
+2026-08-19 17:26:00.343 | info | o9z6dp2ddsyshk |     cached_folder = cls.download(\n
+2026-08-19 17:26:00.343 | info | o9z6dp2ddsyshk |                     ^^^^^^^^^^^^^\n
+2026-08-19 17:26:00.343 | info | o9z6dp2ddsyshk |   File "/usr/local/lib/python3.11/dist-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn\n
+2026-08-19 17:26:00.343 | info | o9z6dp2ddsyshk |     return fn(*args, **kwargs)\n
+2026-08-19 17:26:00.343 | info | o9z6dp2ddsyshk |            ^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 17:26:00.343 | info | o9z6dp2ddsyshk |   File "/usr/local/lib/python3.11/dist-packages/diffusers/pipelines/pipeline_utils.py", line 1815, in download\n
+2026-08-19 17:26:00.343 | info | o9z6dp2ddsyshk |     cached_folder = snapshot_download(\n
+2026-08-19 17:26:00.343 | info | o9z6dp2ddsyshk |                     ^^^^^^^^^^^^^^^^^^\n
+2026-08-19 17:26:00.344 | info | o9z6dp2ddsyshk |   File "/usr/local/lib/python3.11/dist-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn\n
+2026-08-19 17:26:00.344 | info | o9z6dp2ddsyshk |     return fn(*args, **kwargs)\n
+2026-08-19 17:26:00.344 | info | o9z6dp2ddsyshk |            ^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 17:26:00.344 | info | o9z6dp2ddsyshk |   File "/usr/local/lib/python3.11/dist-packages/huggingface_hub/_snapshot_download.py", line 522, in snapshot_download\n
+2026-08-19 17:26:00.344 | info | o9z6dp2ddsyshk |     hf_thread_map(\n
+2026-08-19 17:26:00.344 | info | o9z6dp2ddsyshk |   File "/usr/local/lib/python3.11/dist-packages/huggingface_hub/utils/tqdm.py", line 441, in hf_thread_map\n
+2026-08-19 17:26:00.344 | info | o9z6dp2ddsyshk |     results[future_to_index[future]] = future.result()\n
+2026-08-19 17:26:00.344 | info | o9z6dp2ddsyshk |                                        ^^^^^^^^^^^^^^^\n
+2026-08-19 17:26:00.344 | info | o9z6dp2ddsyshk |   File "/usr/lib/python3.11/concurrent/futures/_base.py", line 449, in result\n
+2026-08-19 17:26:00.344 | info | o9z6dp2ddsyshk |     return self.__get_result()\n
+2026-08-19 17:26:00.344 | info | o9z6dp2ddsyshk |            ^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 17:26:00.344 | info | o9z6dp2ddsyshk |   File "/usr/lib/python3.11/concurrent/futures/_base.py", line 401, in __get_result\n
+2026-08-19 17:26:00.344 | info | o9z6dp2ddsyshk |     raise self._exception\n
+2026-08-19 17:26:00.344 | info | o9z6dp2ddsyshk |   File "/usr/lib/python3.11/concurrent/futures/thread.py", line 58, in run\n
+2026-08-19 17:26:00.344 | info | o9z6dp2ddsyshk |     result = self.fn(*self.args, **self.kwargs)\n
+2026-08-19 17:26:00.344 | info | o9z6dp2ddsyshk |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 17:26:00.344 | info | o9z6dp2ddsyshk |   File "/usr/local/lib/python3.11/dist-packages/huggingface_hub/_snapshot_download.py", line 502, in _inner_hf_hub_download\n
+2026-08-19 17:26:00.344 | info | o9z6dp2ddsyshk |     hf_hub_download(  # type: ignore\n
+2026-08-19 17:26:00.344 | info | o9z6dp2ddsyshk |   File "/usr/local/lib/python3.11/dist-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn\n
+2026-08-19 17:26:00.344 | info | o9z6dp2ddsyshk |     return fn(*args, **kwargs)\n
+2026-08-19 17:26:00.345 | info | o9z6dp2ddsyshk |            ^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 17:26:00.345 | info | o9z6dp2ddsyshk |   File "/usr/local/lib/python3.11/dist-packages/huggingface_hub/file_download.py", line 1019, in hf_hub_download\n
+2026-08-19 17:26:00.345 | info | o9z6dp2ddsyshk |     return _hf_hub_download_to_cache_dir(\n
+2026-08-19 17:26:00.345 | info | o9z6dp2ddsyshk |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 17:26:00.345 | info | o9z6dp2ddsyshk |   File "/usr/local/lib/python3.11/dist-packages/huggingface_hub/file_download.py", line 1242, in _hf_hub_download_to_cache_dir\n
+2026-08-19 17:26:00.345 | info | o9z6dp2ddsyshk |     _download_to_tmp_and_move(\n
+2026-08-19 17:26:00.345 | info | o9z6dp2ddsyshk |   File "/usr/local/lib/python3.11/dist-packages/huggingface_hub/file_download.py", line 1961, in _download_to_tmp_and_move\n
+2026-08-19 17:26:00.345 | info | o9z6dp2ddsyshk |     xet_get(\n
+2026-08-19 17:26:00.345 | info | o9z6dp2ddsyshk |   File "/usr/local/lib/python3.11/dist-packages/huggingface_hub/file_download.py", line 565, in xet_get\n
+2026-08-19 17:26:00.345 | info | o9z6dp2ddsyshk |     with session.new_file_download_group(\n
+2026-08-19 17:26:00.345 | info | o9z6dp2ddsyshk | RuntimeError: Task error: File reconstruction error: IO Error: No space left on device (os error 28)\n
+2026-08-19 17:26:00.345 | info | o9z6dp2ddsyshk | Finished.
+2026-08-19 17:51:21.669 | info | 7sauv4zd9fv6lr | Jobs in queue: 1
+2026-08-19 17:51:21.670 | info | 7sauv4zd9fv6lr | Jobs in progress: 1
+2026-08-19 17:51:21.670 | info | 7sauv4zd9fv6lr | Started.
+2026-08-19 17:51:21.670 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:56,293 [INFO] serverless_worker: Loading FireRed-Image-Edit-1.1 into VRAM for job...\n
+2026-08-19 17:51:21.670 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:56,293 [INFO] inference: Loading FireRed-Image-Edit-1.1 from FireRedTeam/FireRed-Image-Edit-1.1...\n
+2026-08-19 17:51:21.670 | info | 7sauv4zd9fv6lr | /usr/local/lib/python3.11/dist-packages/diffusers/utils/deprecation_utils.py:23: FutureWarning: `torch_dtype` is deprecated and will be removed in version 1.0.0. Please use `dtype` instead.\n
+2026-08-19 17:51:21.670 | info | 7sauv4zd9fv6lr |   deprecate("torch_dtype", "1.0.0", _TORCH_DTYPE_DEPRECATION_MESSAGE)\n
+2026-08-19 17:51:21.670 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:56,490 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/agent-harnesses "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.670 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:56,619 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/models/FireRedTeam/FireRed-Image-Edit-1.1 "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.670 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:56,768 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/main/model_index.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:51:21.670 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:56,774 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/model_index.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.670 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:56,781 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/model_index.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.670 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:56,920 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/models/FireRedTeam/FireRed-Image-Edit-1.1/revision/main "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.670 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,061 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/models/FireRedTeam/FireRed-Image-Edit-1.1/tree/3bc3f2a12722fd9883eb6357500de191d56baaf5?recursive=true&expand=false "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.670 | info | 7sauv4zd9fv6lr | \rFetching 32 files:   0%|          | 0/32 [00:00<?, ?it/s]2026-08-19 14:50:57,197 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor/chat_template.jinja "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:51:21.670 | info | 7sauv4zd9fv6lr | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n
+2026-08-19 17:51:21.670 | warning | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,198 [WARNING] huggingface_hub.utils._http: Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n
+2026-08-19 17:51:21.670 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,202 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fchat_template.jinja "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.670 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,209 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fchat_template.jinja "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.671 | info | 7sauv4zd9fv6lr | \rFetching 32 files:   6%|▋         | 2/32 [00:00<00:02, 14.28it/s]2026-08-19 14:50:57,225 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor/added_tokens.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:51:21.671 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,227 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor/preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:51:21.671 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,229 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor/special_tokens_map.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:51:21.671 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,231 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:51:21.671 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,232 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor/video_preprocessor_config.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:51:21.671 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,232 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fadded_tokens.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.671 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,233 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor/merges.txt "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:51:21.671 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,235 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fpreprocessor_config.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.671 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,237 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fspecial_tokens_map.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.671 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,241 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Ftokenizer_config.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.671 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,242 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fvideo_preprocessor_config.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.671 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,243 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fmerges.txt "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.671 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,255 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fmerges.txt "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.671 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,258 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fadded_tokens.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.671 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,260 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fspecial_tokens_map.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.671 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,261 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Ftokenizer_config.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.671 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,263 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fpreprocessor_config.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.672 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,265 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fvideo_preprocessor_config.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.672 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,337 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor/vocab.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:51:21.672 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,344 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fvocab.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.672 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,351 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/processor%2Fvocab.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.672 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,400 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/scheduler/scheduler_config.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:51:21.672 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,404 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/text_encoder/config.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:51:21.672 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,407 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/scheduler%2Fscheduler_config.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.672 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,412 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/text_encoder%2Fconfig.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.672 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,416 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/scheduler%2Fscheduler_config.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.672 | info | 7sauv4zd9fv6lr | \rFetching 32 files:  28%|██▊       | 9/32 [00:00<00:00, 27.42it/s]2026-08-19 14:50:57,421 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/text_encoder%2Fconfig.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.672 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,547 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/text_encoder/model.safetensors.index.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:51:21.672 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,552 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer/added_tokens.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:51:21.672 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,554 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/text_encoder%2Fmodel.safetensors.index.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.672 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,560 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer%2Fadded_tokens.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.672 | info | 7sauv4zd9fv6lr | \rFetching 32 files:  38%|███▊      | 12/32 [00:00<00:00, 24.77it/s]2026-08-19 14:50:57,567 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer/chat_template.jinja "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:51:21.672 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,571 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/text_encoder%2Fmodel.safetensors.index.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.672 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,576 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer%2Fchat_template.jinja "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.673 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,585 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer%2Fchat_template.jinja "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.673 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,704 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer/special_tokens_map.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:51:21.673 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,713 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer%2Fspecial_tokens_map.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.673 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,714 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:51:21.673 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,717 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer/merges.txt "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:51:21.673 | info | 7sauv4zd9fv6lr | \rFetching 32 files:  47%|████▋     | 15/32 [00:00<00:00, 22.50it/s]2026-08-19 14:50:57,723 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer%2Ftokenizer_config.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.673 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,726 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer%2Fmerges.txt "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.673 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,735 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer%2Ftokenizer_config.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.673 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,850 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer/vocab.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:51:21.673 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,857 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/transformer/config.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:51:21.673 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,859 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer%2Fvocab.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.673 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,866 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/transformer%2Fconfig.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.673 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,871 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/tokenizer%2Fvocab.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.673 | info | 7sauv4zd9fv6lr | 2026-08-19 14:50:57,874 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/transformer%2Fconfig.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.673 | info | 7sauv4zd9fv6lr | \rFetching 32 files:  56%|█████▋    | 18/32 [00:00<00:00, 21.35it/s]\rFetching 32 files:  66%|██████▌   | 21/32 [00:17<00:18,  1.72s/it]\rFetching 32 files:  69%|██████▉   | 22/32 [00:24<00:24,  2.46s/it]2026-08-19 14:51:21,669 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/transformer/diffusion_pytorch_model.safetensors.index.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:51:21.826 | info | 7sauv4zd9fv6lr | 2026-08-19 14:51:21,680 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/transformer%2Fdiffusion_pytorch_model.safetensors.index.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.826 | info | 7sauv4zd9fv6lr | 2026-08-19 14:51:21,690 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/transformer%2Fdiffusion_pytorch_model.safetensors.index.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:21.826 | info | 7sauv4zd9fv6lr | 2026-08-19 14:51:21,825 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1/resolve/3bc3f2a12722fd9883eb6357500de191d56baaf5/vae/config.json "HTTP/1.1 307 Temporary Redirect"\n
+2026-08-19 17:51:48.701 | info | 7sauv4zd9fv6lr | 2026-08-19 14:51:21,833 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/vae%2Fconfig.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:48.701 | info | 7sauv4zd9fv6lr | 2026-08-19 14:51:21,842 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/resolve-cache/models/FireRedTeam/FireRed-Image-Edit-1.1/3bc3f2a12722fd9883eb6357500de191d56baaf5/vae%2Fconfig.json "HTTP/1.1 200 OK"\n
+2026-08-19 17:51:48.701 | info | 7sauv4zd9fv6lr | \rFetching 32 files:  75%|███████▌  | 24/32 [00:24<00:14,  1.84s/it]\rFetching 32 files:  81%|████████▏ | 26/32 [00:29<00:11,  2.00s/it]\rFetching 32 files:  84%|████████▍ | 27/32 [00:31<00:10,  2.02s/it]\rFetching 32 files:  88%|████████▊ | 28/32 [00:33<00:07,  1.97s/it]\rFetching 32 files:  91%|█████████ | 29/32 [00:47<00:13,  4.55s/it]\rFetching 32 files:  94%|█████████▍| 30/32 [00:48<00:07,  3.70s/it]\rFetching 32 files:  97%|█████████▋| 31/32 [00:50<00:03,  3.33s/it]\rFetching 32 files: 100%|██████████| 32/32 [00:51<00:00,  2.71s/it]\rFetching 32 files: 100%|██████████| 32/32 [00:51<00:00,  1.61s/it]\n
+2026-08-19 17:51:49.106 | info | 7sauv4zd9fv6lr | \rLoading pipeline components...:   0%|          | 0/6 [00:00<?, ?it/s]\rLoading pipeline components...:  17%|█▋        | 1/6 [00:00<00:01,  3.53it/s]\n
+2026-08-19 17:51:49.241 | info | 7sauv4zd9fv6lr | \rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s][A\n
+2026-08-19 17:51:50.222 | info | 7sauv4zd9fv6lr | \rLoading checkpoint shards:  60%|██████    | 3/5 [00:00<00:00, 22.34it/s][A\rLoading checkpoint shards: 100%|██████████| 5/5 [00:00<00:00, 26.06it/s]\n
+2026-08-19 17:51:50.222 | info | 7sauv4zd9fv6lr | \rLoading pipeline components...:  50%|█████     | 3/6 [00:00<00:00,  5.22it/s]\rLoading pipeline components...:  67%|██████▋   | 4/6 [00:01<00:00,  3.19it/s]\n
+2026-08-19 17:51:50.327 | info | 7sauv4zd9fv6lr | \rLoading weights:   0%|          | 0/729 [00:00<?, ?it/s][A\n
+2026-08-19 17:51:50.472 | info | 7sauv4zd9fv6lr | \rLoading weights:  52%|█████▏    | 378/729 [00:00<00:00, 3760.14it/s][A\rLoading weights: 100%|██████████| 729/729 [00:00<00:00, 4078.20it/s]\n
+2026-08-19 17:51:50.472 | info | 7sauv4zd9fv6lr | \rLoading pipeline components...:  83%|████████▎ | 5/6 [00:01<00:00,  2.48it/s]\rLoading pipeline components...: 100%|██████████| 6/6 [00:01<00:00,  3.40it/s]\n
+2026-08-19 17:52:05.844 | error | 7sauv4zd9fv6lr | 2026-08-19 14:52:05,844 [ERROR] inference: Failed to load FireRed model: CUDA out of memory. Tried to allocate 108.00 MiB. GPU 0 has a total capacity of 44.34 GiB of which 60.81 MiB is free. Process 3724773 has 44.27 GiB memory in use. Of the allocated memory 43.78 GiB is allocated by PyTorch, and 188.51 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n
+2026-08-19 17:52:05.990 | info | 7sauv4zd9fv6lr | 2026-08-19 14:52:05,989 [INFO] model_loader: Cleared PyTorch CUDA VRAM cache.\n
+2026-08-19 17:52:06.298 | info | 7sauv4zd9fv6lr | 2026-08-19 14:52:05,989 [INFO] inference: FireRed-Image-Edit-1.1 unloaded.\n
+2026-08-19 17:52:06.298 | error | 7sauv4zd9fv6lr | 2026-08-19 14:52:05,989 [ERROR] serverless_worker: Error in serverless handler: CUDA out of memory. Tried to allocate 108.00 MiB. GPU 0 has a total capacity of 44.34 GiB of which 60.81 MiB is free. Process 3724773 has 44.27 GiB memory in use. Of the allocated memory 43.78 GiB is allocated by PyTorch, and 188.51 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n
+2026-08-19 17:52:06.298 | info | 7sauv4zd9fv6lr | Traceback (most recent call last):\n
+2026-08-19 17:52:06.298 | info | 7sauv4zd9fv6lr |   File "/app/runpod/serverless_handler.py", line 61, in serverless_handler\n
+2026-08-19 17:52:06.298 | info | 7sauv4zd9fv6lr |     provider.load()\n
+2026-08-19 17:52:06.298 | info | 7sauv4zd9fv6lr |   File "/app/runpod/inference.py", line 130, in load\n
+2026-08-19 17:52:06.298 | info | 7sauv4zd9fv6lr |     raise e\n
+2026-08-19 17:52:06.298 | info | 7sauv4zd9fv6lr |   File "/app/runpod/inference.py", line 115, in load\n
+2026-08-19 17:52:06.298 | info | 7sauv4zd9fv6lr |     self.pipeline.to(device)\n
+2026-08-19 17:52:06.298 | info | 7sauv4zd9fv6lr |   File "/usr/local/lib/python3.11/dist-packages/diffusers/pipelines/pipeline_utils.py", line 583, in to\n
+2026-08-19 17:52:06.298 | info | 7sauv4zd9fv6lr |     module.to(device, dtype)\n
+2026-08-19 17:52:06.298 | info | 7sauv4zd9fv6lr |   File "/usr/local/lib/python3.11/dist-packages/diffusers/models/modeling_utils.py", line 1550, in to\n
+2026-08-19 17:52:06.298 | info | 7sauv4zd9fv6lr |     return super().to(*args, **kwargs)\n
+2026-08-19 17:52:06.298 | info | 7sauv4zd9fv6lr |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 17:52:06.298 | info | 7sauv4zd9fv6lr |   File "/usr/local/lib/python3.11/dist-packages/torch/nn/modules/module.py", line 1340, in to\n
+2026-08-19 17:52:06.299 | info | 7sauv4zd9fv6lr |     return self._apply(convert)\n
+2026-08-19 17:52:06.299 | info | 7sauv4zd9fv6lr |            ^^^^^^^^^^^^^^^^^^^^\n
+2026-08-19 17:52:06.299 | info | 7sauv4zd9fv6lr |   File "/usr/local/lib/python3.11/dist-packages/torch/nn/modules/module.py", line 900, in _apply\n
+2026-08-19 17:52:06.299 | info | 7sauv4zd9fv6lr |     module._apply(fn)\n
+2026-08-19 17:52:06.299 | info | 7sauv4zd9fv6lr |   File "/usr/local/lib/python3.11/dist-packages/torch/nn/modules/module.py", line 900, in _apply\n
+2026-08-19 17:52:06.299 | info | 7sauv4zd9fv6lr |     module._apply(fn)\n
+2026-08-19 17:52:06.299 | info | 7sauv4zd9fv6lr |   File "/usr/local/lib/python3.11/dist-packages/torch/nn/modules/module.py", line 900, in _apply\n
+2026-08-19 17:52:06.299 | info | 7sauv4zd9fv6lr |     module._apply(fn)\n
+2026-08-19 17:52:06.299 | info | 7sauv4zd9fv6lr |   [Previous line repeated 1 more time]\n
+2026-08-19 17:52:06.299 | info | 7sauv4zd9fv6lr |   File "/usr/local/lib/python3.11/dist-packages/torch/nn/modules/module.py", line 927, in _apply\n
+2026-08-19 17:52:06.299 | info | 7sauv4zd9fv6lr |     param_applied = fn(param)\n
+2026-08-19 17:52:06.299 | info | 7sauv4zd9fv6lr |                     ^^^^^^^^^\n
+2026-08-19 17:52:06.299 | info | 7sauv4zd9fv6lr |   File "/usr/local/lib/python3.11/dist-packages/torch/nn/modules/module.py", line 1326, in convert\n
+2026-08-19 17:52:06.299 | info | 7sauv4zd9fv6lr |     return t.to(\n
+2026-08-19 17:52:06.299 | info | 7sauv4zd9fv6lr |            ^^^^^\n
+2026-08-19 17:52:06.299 | info | 7sauv4zd9fv6lr | torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 108.00 MiB. GPU 0 has a total capacity of 44.34 GiB of which 60.81 MiB is free. Process 3724773 has 44.27 GiB memory in use. Of the allocated memory 43.78 GiB is allocated by PyTorch, and 188.51 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n
+2026-08-19 17:52:06.299 | info | 7sauv4zd9fv6lr | Finished.
