@@ -2,6 +2,7 @@
 .env
 *.env
 *.secret
+local/config.json
 
 # History media & user images
 history/

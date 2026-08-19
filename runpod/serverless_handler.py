@@ -27,14 +27,6 @@ except ImportError:
     runpod = None
     logger.warning("runpod python package is not installed. Install with 'pip install runpod'.")
 
-# Preload default provider on worker boot
-try:
-    default_provider = registry.get_provider("FireRed-Image-Edit-1.1")
-    default_provider.load()
-    logger.info("Serverless Worker initialized and model warm in VRAM.")
-except Exception as e:
-    logger.warning(f"Deferred model loading: {e}")
-
 
 def serverless_handler(job: dict) -> dict:
     """
@@ -53,8 +45,11 @@ def serverless_handler(job: dict) -> dict:
         pil_image = base64_to_pil(req.image_base64)
         effective_prompt = req.enhanced_prompt if req.enhanced_prompt else req.prompt
 
-        # 2. Select Provider
+        # 2. Select Provider & Ensure Loaded
         provider = registry.get_provider(req.model_name)
+        if not provider.is_loaded:
+            logger.info(f"Loading {req.model_name} for incoming job...")
+            provider.load()
 
         # 3. Perform Inference
         result_pil, actual_seed, proc_time, meta = provider.edit(
@@ -95,7 +90,7 @@ def serverless_handler(job: dict) -> dict:
 
 if __name__ == "__main__":
     if runpod is not None:
-        logger.info("Starting RunPod Serverless listener loop...")
+        logger.info("Starting RunPod Serverless worker listener loop...")
         runpod.serverless.start({"handler": serverless_handler})
     else:
         logger.error("RunPod SDK not available. Run: pip install runpod")

@@ -17,11 +17,16 @@ RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir runpod && \
     pip install --no-cache-dir git+https://github.com/huggingface/diffusers.git
 
+# Create cache directories
+RUN mkdir -p /root/.cache/huggingface /root/.cache/torch /root/.cache/image_editor_models
+
 # Copy project files
 COPY shared /app/shared
 COPY runpod /app/runpod
 
 ENV PYTHONUNBUFFERED=1
-ENV HF_HOME=/runpod-volume/cache/huggingface
+ENV PYTHONPATH=/app
+ENV HF_HOME=/root/.cache/huggingface
+ENV TORCH_HOME=/root/.cache/torch
 
 CMD ["python", "-u", "/app/runpod/serverless_handler.py"]

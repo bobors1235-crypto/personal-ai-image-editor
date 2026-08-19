@@ -168,8 +168,15 @@ class RunPodServerlessClientProvider(BaseInferenceClient):
 
                 if status == "COMPLETED":
                     output = data.get("output", {})
-                    output["processing_time"] = round(time.time() - start_time, 2)
-                    return EditResponse(**output)
+                    if isinstance(output, dict):
+                        if "seed" not in output:
+                            output["seed"] = request.seed or 0
+                        if "model_name" not in output:
+                            output["model_name"] = request.model_name
+                        if "enhanced_prompt" not in output:
+                            output["enhanced_prompt"] = request.enhanced_prompt or request.prompt
+                        output["processing_time"] = round(time.time() - start_time, 2)
+                        return EditResponse(**output)
                 
                 # If status is IN_QUEUE or IN_PROGRESS, fallback to polling
                 job_id = data.get("id")
@@ -217,8 +224,15 @@ class RunPodServerlessClientProvider(BaseInferenceClient):
                     status = data.get("status")
                     if status == "COMPLETED":
                         output = data.get("output", {})
-                        output["processing_time"] = round(time.time() - start_time, 2)
-                        return EditResponse(**output)
+                        if isinstance(output, dict):
+                            if "seed" not in output:
+                                output["seed"] = request.seed or 0
+                            if "model_name" not in output:
+                                output["model_name"] = request.model_name
+                            if "enhanced_prompt" not in output:
+                                output["enhanced_prompt"] = request.enhanced_prompt or request.prompt
+                            output["processing_time"] = round(time.time() - start_time, 2)
+                            return EditResponse(**output)
                     elif status in ["FAILED", "CANCELLED"]:
                         return EditResponse(
                             success=False,

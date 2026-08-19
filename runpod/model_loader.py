@@ -25,12 +25,17 @@ class ModelManager:
 
     @classmethod
     def get_cache_dir(cls) -> str:
-        """Return persistent /workspace cache if available, otherwise local cache."""
-        if os.path.exists("/workspace"):
+        """Return persistent /workspace cache or /runpod-volume if available, otherwise local cache."""
+        if os.path.exists("/workspace") and os.path.isdir("/workspace"):
             os.makedirs(cls.WORKSPACE_CACHE, exist_ok=True)
             return cls.WORKSPACE_CACHE
-        os.makedirs(cls.LOCAL_CACHE, exist_ok=True)
-        return cls.LOCAL_CACHE
+        if os.path.exists("/runpod-volume") and os.path.isdir("/runpod-volume"):
+            path = "/runpod-volume/cache/models"
+            os.makedirs(path, exist_ok=True)
+            return path
+        cache_dir = os.environ.get("HF_HOME") or cls.LOCAL_CACHE
+        os.makedirs(cache_dir, exist_ok=True)
+        return cache_dir
 
     @classmethod
     def get_gpu_info(cls) -> Dict[str, Any]:
