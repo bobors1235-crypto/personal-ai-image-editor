@@ -1,0 +1,13 @@
+{
+  "runpod_endpoint_url": "http://127.0.0.1:8000",
+  "runpod_api_key": "",
+  "runpod_pod_id": "",
+  "gpu_hourly_cost": 0.45,
+  "auto_stop_minutes": 30,
+  "auto_stop_enabled": true,
+  "default_model": "FireRed-Image-Edit-1.1",
+  "default_quality": "high",
+  "default_identity_strength": "high",
+  "developer_mode": false,
+  "provider_type": "mock"
+}

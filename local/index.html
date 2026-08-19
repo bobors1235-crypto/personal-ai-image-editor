@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Image Editor - Personal Edition</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- App Container -->
+  <div class="app-wrapper">
+    
+    <!-- Top Header -->
+    <header class="main-header">
+      <div class="header-left">
+        <div class="logo">
+          <div class="logo-icon">✨</div>
+          <div class="logo-text">
+            <h1>AI IMAGE EDITOR</h1>
+            <span class="badge-edition">PERSONAL PRO</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live GPU & Cost Status Capsule -->
+      <div class="header-center">
+        <div class="status-capsule" id="statusCapsule">
+          <div class="status-indicator">
+            <span class="status-dot" id="statusDot"></span>
+            <span class="status-text" id="statusText">Checking...</span>
+          </div>
+          <div class="divider-v"></div>
+          <div class="stat-item" title="GPU Session Uptime">
+            <span class="stat-icon">⏱️</span>
+            <span class="stat-label">Uptime:</span>
+            <span class="stat-value" id="uptimeCounter">00:00:00</span>
+          </div>
+          <div class="divider-v"></div>
+          <div class="stat-item" title="Estimated GPU Cost">
+            <span class="stat-icon">💵</span>
+            <span class="stat-label">Cost:</span>
+            <span class="stat-value cost-val" id="costCounter">$0.000</span>
+          </div>
+          <button class="btn-icon-subtle" id="btnReconnect" title="Reconnect / Refresh Status">
+            🔄
+          </button>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="header-right">
+        <button class="btn-secondary btn-sm" id="btnOpenHistory">
+          📁 السجل المحلي (<span id="historyCountBadge">0</span>)
+        </button>
+        <button class="btn-secondary btn-sm" id="btnOpenSettings">
+          ⚙️ الإعدادات
+        </button>
+      </div>
+    </header>
+
+    <!-- Offline Alert Banner (shown when disconnected) -->
+    <div class="alert-banner hidden" id="offlineBanner">
+      <div class="alert-content">
+        <span class="alert-icon">⚠️</span>
+        <span class="alert-msg" id="offlineMsg">RunPod غير متصل. يمكنك تشغيل الـ Pod أو التبديل إلى Mock Mode في الإعدادات للتجربة بدون تكلفة.</span>
+      </div>
+      <div class="alert-actions">
+        <button class="btn-sm btn-primary" id="btnBannerReconnect">إعادة المحاولة</button>
+      </div>
+    </div>
+
+    <!-- Main Studio Grid -->
+    <main class="studio-grid">
+      
+      <!-- Left Panel: Controls & Input -->
+      <section class="control-panel glass-panel">
+        
+        <!-- 1. Image Upload Dropzone -->
+        <div class="section-block">
+          <div class="block-header">
+            <label class="block-title">📸 صورة الإدخال (Input Image)</label>
+            <button class="btn-text" id="btnClearImage" style="display: none;">مسح الصورة</button>
+          </div>
+          
+          <div class="dropzone" id="dropZone">
+            <input type="file" id="fileInput" accept="image/png, image/jpeg, image/jpg, image/webp" hidden>
+            
+            <!-- Empty State -->
+            <div class="dropzone-empty" id="dropEmptyState">
+              <div class="drop-icon">📤</div>
+              <p class="drop-primary">اسحب وأفلت الصورة هنا أو <span>تصفح الملفات</span></p>
+              <p class="drop-secondary">يدعم JPG, PNG, WEBP أو لصق فوري (Ctrl+V)</p>
+            </div>
+
+            <!-- Preview State -->
+            <div class="dropzone-preview" id="dropPreviewState" style="display: none;">
+              <img id="imagePreview" alt="Input Preview" />
+              <div class="preview-overlay">
+                <span class="img-meta-pill" id="imageDimPill">0x0</span>
+                <span class="img-meta-pill">جاهزة للتعديل</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Prompt Input -->
+        <div class="section-block">
+          <div class="block-header">
+            <label class="block-title" for="promptInput">✍️ وصف التعديل المطلوب (Edit Instruction)</label>
+            <span class="lang-pill" id="langBadge">العربية / EN</span>
+          </div>
+
+          <div class="prompt-box-wrapper">
+            <textarea 
+              id="promptInput" 
+              placeholder="اكتب التعديل بالعربية أو الإنجليزية، مثلاً:&#10;غير اللبس لبدلة سودا وخلي التصوير في شارع بنيويورك بالليل..."
+              rows="4"
+            ></textarea>
+            <button class="btn-preview-prompt" id="btnAnalyzePrompt" title="معاينة تحسين الـ Prompt محلياً مجاناً">
+              🔍 معاينة توسيع الـ Prompt
+            </button>
+          </div>
+
+          <!-- Quick Templates / Suggestion Chips -->
+          <div class="suggestion-chips">
+            <span class="chip" data-prompt="غير اللبس لبدلة سودا رسمية فاخرة">👔 بدلة سوداء</span>
+            <span class="chip" data-prompt="غير اللبس لجاكيت جلد كاجوال أسود">🧥 جاكيت جلد</span>
+            <span class="chip" data-prompt="خلي الخلفية في شارع بنيويورك بالليل بأضواء المدينة">🌃 نيويورك بالليل</span>
+            <span class="chip" data-prompt="خلي التصوير على شاطئ البحر وقت الغروب الذهبي">🌅 بحر وقت الغروب</span>
+            <span class="chip" data-prompt="غير زاوية التصوير لقطة سينمائية زاوية منخفضة Low Angle">🎬 Low Angle Shot</span>
+            <span class="chip" data-prompt="ضيف نظارة شمسية سوداء كلاسيكية">🕶️ نظارة شمس</span>
+          </div>
+        </div>
+
+        <!-- 3. Advanced Model Controls -->
+        <div class="section-block controls-row">
+          
+          <div class="control-group">
+            <label class="control-label">الموديل (Model)</label>
+            <select id="modelSelect" class="form-select">
+              <option value="FireRed-Image-Edit-1.1" selected>FireRed-Image-Edit-1.1 (أساسي)</option>
+              <option value="Qwen-Image-Edit-2511">Qwen-Image-Edit-2511 (تجريبي)</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">الحفاظ على الهوية (Identity)</label>
+            <select id="identitySelect" class="form-select">
+              <option value="high" selected>عالي جداً (High - تثبيت الملامح)</option>
+              <option value="normal">متوسط (Normal)</option>
+              <option value="low">مرن (Low)</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">جودة الإخراج (Quality)</label>
+            <select id="qualitySelect" class="form-select">
+              <option value="high" selected>High (1536px / 35 Steps)</option>
+              <option value="normal">Normal (1024px / 25 Steps)</option>
+            </select>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">الـ Seed</label>
+            <div class="seed-input-wrapper">
+              <input type="number" id="seedInput" placeholder="عشوائي (Random)" class="form-input" />
+              <button class="btn-icon" id="btnRandomSeed" title="توليد Seed عشوائي">🎲</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 4. Generate Action -->
+        <div class="action-block">
+          <button class="btn-primary btn-generate" id="btnGenerate">
+            <span class="btn-icon-gen">⚡</span>
+            <span class="btn-text-gen">توليد التعديل (GENERATE)</span>
+            <span class="btn-shortcut">Ctrl+Enter</span>
+          </button>
+        </div>
+
+      </section>
+
+      <!-- Right Panel: Viewer & Results -->
+      <section class="viewer-panel glass-panel">
+        
+        <div class="viewer-header">
+          <div class="viewer-tabs">
+            <button class="tab-btn active" id="tabSplit">مقارنة بالسلايدر (Slider)</button>
+            <button class="tab-btn" id="tabSideBySide">جنباً إلى جنب (Side by Side)</button>
+          </div>
+
+          <div class="viewer-meta" id="viewerMetaPill" style="display: none;">
+            <span id="genTimeBadge">⏱️ 0.0s</span>
+            <span id="genSeedBadge">🌱 Seed: -</span>
+          </div>
+        </div>
+
+        <!-- Canvas / Display Viewports -->
+        <div class="viewport-wrapper" id="viewportWrapper">
+          
+          <!-- Empty Canvas Placeholder -->
+          <div class="viewer-placeholder" id="viewerEmpty">
+            <div class="placeholder-icon">🖼️</div>
+            <h3>في انتظار توليد الصورة</h3>
+            <p>ارفع صورة واكتب التعديل المطلوب ثم اضغط GENERATE</p>
+          </div>
+
+          <!-- Loading Spinner -->
+          <div class="viewer-loading" id="viewerLoading" style="display: none;">
+            <div class="spinner"></div>
+            <h3 id="loadingStatusText">جاري معالجة وتعديل الصورة...</h3>
+            <p class="loading-subtext">يتم تطبيق تعليمات الحفاظ على الهوية والإضاءة الواقعية</p>
+            <div class="loading-timer" id="liveTimer">0.0s</div>
+          </div>
+
+          <!-- Split Comparison Slider Container -->
+          <div class="slider-container" id="sliderContainer" style="display: none;">
+            <div class="img-wrapper before-wrapper">
+              <img id="imgBefore" alt="Before Image" />
+              <span class="label-badge before-badge">الأصلية (Before)</span>
+            </div>
+            <div class="img-wrapper after-wrapper" id="afterWrapper">
+              <img id="imgAfter" alt="After Image" />
+              <span class="label-badge after-badge">المعدلة (After)</span>
+            </div>
+            <div class="slider-handle" id="sliderHandle">
+              <div class="handle-line"></div>
+              <div class="handle-circle">↔</div>
+            </div>
+          </div>
+
+          <!-- Side-by-Side View Container -->
+          <div class="side-by-side-container" id="sideContainer" style="display: none;">
+            <div class="side-box">
+              <span class="label-badge">الأصلية (Before)</span>
+              <img id="imgBeforeSide" alt="Before" />
+            </div>
+            <div class="side-box">
+              <span class="label-badge">المعدلة (After)</span>
+              <img id="imgAfterSide" alt="After" />
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Result Operations Toolbar -->
+        <div class="viewer-toolbar" id="viewerToolbar" style="display: none;">
+          <button class="btn-primary btn-tool" id="btnEditAgain" title="استخدام الصورة الناتجة كمدخل لتعديل جديد">
+            🔄 تعديل النتيجة مجدداً (Edit Again)
+          </button>
+          <button class="btn-secondary btn-tool" id="btnDownload">
+            📥 تحميل النتيجة (Download)
+          </button>
+          <button class="btn-secondary btn-tool" id="btnNewSession">
+            ✨ صورة جديدة
+          </button>
+          <button class="btn-subtle btn-tool" id="btnToggleDevMode">
+            🛠️ تفاصيل المطور (Developer Mode)
+          </button>
+        </div>
+
+        <!-- Developer Mode Drawer -->
+        <div class="dev-drawer hidden" id="devDrawer">
+          <div class="dev-drawer-header">
+            <h4>🛠️ تفاصيل المعالجة والموديل (Developer Inspection)</h4>
+            <button class="btn-icon-subtle" id="btnCloseDev">✕</button>
+          </div>
+          <div class="dev-drawer-body">
+            
+            <div class="dev-row">
+              <span class="dev-key">الطلب الأصلي:</span>
+              <div class="dev-val" id="devRawPrompt">-</div>
+            </div>
+
+            <div class="dev-row">
+              <span class="dev-key">التصنيفات المكتشفة:</span>
+              <div class="dev-tags" id="devCategories"></div>
+            </div>
+
+            <div class="dev-row">
+              <span class="dev-key">قاعدة Preserve vs Change:</span>
+              <div class="dev-tags">
+                <span class="tag tag-change" id="devChangeTargets">Change: -</span>
+                <span class="tag tag-preserve" id="devPreserveTargets">Preserve: -</span>
+              </div>
+            </div>
+
+            <div class="dev-row">
+              <div class="dev-key-row">
+                <span class="dev-key">الـ Enhanced Prompt المرسل للموديل:</span>
+                <button class="btn-text-sm" id="btnCopyEnhanced">نسخ النص</button>
+              </div>
+              <pre class="code-box" id="devEnhancedPrompt">-</pre>
+            </div>
+
+            <div class="dev-grid-metrics">
+              <div class="metric-card">
+                <span class="metric-lbl">الموديل</span>
+                <span class="metric-num" id="devModelName">-</span>
+              </div>
+              <div class="metric-card">
+                <span class="metric-lbl">الـ Seed</span>
+                <span class="metric-num" id="devSeed">-</span>
+              </div>
+              <div class="metric-card">
+                <span class="metric-lbl">زمن المعالجة</span>
+                <span class="metric-num" id="devTime">-</span>
+              </div>
+              <div class="metric-card">
+                <span class="metric-lbl">حالة GPU / VRAM</span>
+                <span class="metric-num" id="devVram">-</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- History Drawer -->
+    <aside class="drawer drawer-right" id="historyDrawer">
+      <div class="drawer-header">
+        <h3>📁 سجل التعديلات المحلي (/history/)</h3>
+        <button class="btn-icon-subtle" id="btnCloseHistory">✕</button>
+      </div>
+      <div class="drawer-body">
+        <div class="history-list" id="historyList">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </aside>
+
+    <!-- Settings Modal -->
+    <div class="modal-backdrop hidden" id="settingsModal">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>⚙️ إعدادات النظام و RunPod</h3>
+          <button class="btn-icon-subtle" id="btnCloseSettings">✕</button>
+        </div>
+        <div class="modal-body">
+          
+          <div class="setting-item">
+            <label class="setting-label">نوع المزود (Provider Mode)</label>
+            <select id="settingProviderType" class="form-select">
+              <option value="mock">⚡ Local Mock Provider (تجربة مجانية وفورية بدون GPU)</option>
+              <option value="runpod">🚀 RunPod GPU Server (استدلال حقيقي على GPU)</option>
+            </select>
+          </div>
+
+          <div class="setting-item">
+            <label class="setting-label">رابط RunPod Endpoint URL</label>
+            <input type="text" id="settingRunpodUrl" class="form-input" placeholder="http://127.0.0.1:8000 أو رابط البروكسي" />
+          </div>
+
+          <div class="setting-item">
+            <label class="setting-label">سعر ساعة الـ GPU ($/Hour)</label>
+            <input type="number" step="0.01" id="settingHourlyCost" class="form-input" placeholder="0.33" />
+            <small class="setting-hint">يستخدم لحساب التكلفة التقديرية بدقة.</small>
+          </div>
+
+          <div class="setting-item">
+            <label class="setting-label">RunPod API Key (اختياري للتحكم التلقائي)</label>
+            <input type="password" id="settingApiKey" class="form-input" placeholder="rpa_..." />
+          </div>
+
+          <div class="setting-item">
+            <label class="setting-label">RunPod Pod ID (اختياري)</label>
+            <input type="text" id="settingPodId" class="form-input" placeholder="مثلاً: abc123def456" />
+          </div>
+
+          <div class="setting-item">
+            <label class="setting-label">الإيقاف التلقائي لمنع استهلاك الرصيد (Auto-Stop)</label>
+            <select id="settingAutoStop" class="form-select">
+              <option value="15">بعد 15 دقيقة خمول</option>
+              <option value="30" selected>بعد 30 دقيقة خمول (موصى به)</option>
+              <option value="60">بعد 60 دقيقة خمول</option>
+              <option value="0">تعطيل الإيقاف التلقائي</option>
+            </select>
+          </div>
+
+          <!-- Pod Direct Controls -->
+          <div class="pod-controls-box">
+            <label class="setting-label">التحكم المباشر في الـ Pod</label>
+            <div class="pod-btn-row">
+              <button class="btn-sm btn-success" id="btnStartPod">▶ تشغيل الـ Pod</button>
+              <button class="btn-sm btn-danger" id="btnStopPod">⏹ إيقاف الـ Pod</button>
+              <button class="btn-sm btn-secondary" id="btnResetTimer">🔄 تصفير عداد الوقت</button>
+            </div>
+            <div id="podControlMsg" class="pod-control-msg"></div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn-secondary" id="btnCancelSettings">إلغاء</button>
+          <button class="btn-primary" id="btnSaveSettings">حفظ الإعدادات</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
