@@ -10,10 +10,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Python requirements
-COPY runpod/requirements.txt .
+# Upgrade PyTorch to >= 2.5 and install latest diffusers with QwenImageEditPlusPipeline
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+    pip install --no-cache-dir torch torchvision --upgrade --index-url https://download.pytorch.org/whl/cu124 && \
+    pip install --no-cache-dir git+https://github.com/huggingface/diffusers.git transformers accelerate safetensors sentencepiece protobuf runpod fastapi uvicorn pillow pydantic requests httpx
 
 # Create cache directories
 RUN mkdir -p /root/.cache/huggingface /root/.cache/torch /root/.cache/image_editor_models

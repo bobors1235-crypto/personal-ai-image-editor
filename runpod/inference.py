@@ -30,7 +30,7 @@ logging.basicConfig(level=logging.INFO)
 
 
 class InferenceProvider(ABC):
-    """Abstract base class for all image editing model providers."""
+    """Abstract interface for modular image editing models."""
 
     def __init__(self, model_id: str):
         self.model_id = model_id
@@ -39,12 +39,12 @@ class InferenceProvider(ABC):
 
     @abstractmethod
     def load(self) -> bool:
-        """Load model into GPU memory."""
+        """Load model into GPU VRAM."""
         pass
 
     @abstractmethod
     def unload(self):
-        """Unload model and free GPU memory."""
+        """Unload model and free VRAM."""
         pass
 
     @abstractmethod
@@ -59,16 +59,16 @@ class InferenceProvider(ABC):
         guidance_scale: Optional[float] = None
     ) -> Tuple[Image.Image, int, float, Dict[str, Any]]:
         """
-        Execute image edit.
-        Returns (result_image, actual_seed, processing_time_seconds, metadata).
+        Execute image editing inference.
+        Returns: (result_image, seed, processing_time, metadata)
         """
         pass
 
 
 class FireRedProvider(InferenceProvider):
     """
-    Provider for FireRed-Image-Edit-1.1 foundation model.
-    Maintains strong identity consistency and high photorealism.
+    Provider for FireRed-Image-Edit-1.1 model.
+    Default high-fidelity editing model preserving facial identity and context.
     """
 
     DEFAULT_MODEL_ID = "FireRedTeam/FireRed-Image-Edit-1.1"
@@ -92,13 +92,26 @@ class FireRedProvider(InferenceProvider):
         device = "cuda"
 
         try:
-            # Try specialized pipeline first or fallback to standard DiffusionPipeline
-            self.pipeline = DiffusionPipeline.from_pretrained(
-                self.model_id,
-                torch_dtype=dtype,
-                cache_dir=cache_dir,
-                trust_remote_code=True
-            )
+            # Try QwenImageEditPlusPipeline or fallback to DiffusionPipeline
+            pipe = None
+            try:
+                from diffusers import QwenImageEditPlusPipeline
+                pipe = QwenImageEditPlusPipeline.from_pretrained(
+                    self.model_id,
+                    torch_dtype=dtype,
+                    cache_dir=cache_dir,
+                    trust_remote_code=True
+                )
+            except Exception as pe:
+                logger.info(f"Direct QwenImageEditPlusPipeline load notice: {pe}. Falling back to DiffusionPipeline...")
+                pipe = DiffusionPipeline.from_pretrained(
+                    self.model_id,
+                    torch_dtype=dtype,
+                    cache_dir=cache_dir,
+                    trust_remote_code=True
+                )
+
+            self.pipeline = pipe
             self.pipeline.to(device)
 
             # Enable memory optimizations if available
@@ -163,13 +176,24 @@ class FireRedProvider(InferenceProvider):
         generator = torch.Generator(device=self.pipeline.device).manual_seed(actual_seed)
 
         with torch.inference_mode():
-            output = self.pipeline(
-                prompt=prompt,
-                image=processed_image,
-                num_inference_steps=inference_steps,
-                guidance_scale=guidance,
-                generator=generator
-            )
+            # Robust inference call with parameter compatibility
+            try:
+                output = self.pipeline(
+                    prompt=prompt,
+                    image=processed_image,
+                    num_inference_steps=inference_steps,
+                    guidance_scale=guidance,
+                    generator=generator
+                )
+            except TypeError:
+                output = self.pipeline(
+                    prompt=prompt,
+                    image=[processed_image],
+                    num_inference_steps=inference_steps,
+                    guidance_scale=guidance,
+                    generator=generator
+                )
+
             result_img = output.images[0]
 
         proc_time = round(time.time() - start_t, 2)
@@ -210,12 +234,24 @@ class QwenProvider(InferenceProvider):
         device = "cuda"
 
         try:
-            self.pipeline = DiffusionPipeline.from_pretrained(
-                self.model_id,
-                torch_dtype=dtype,
-                cache_dir=cache_dir,
-                trust_remote_code=True
-            )
+            pipe = None
+            try:
+                from diffusers import QwenImageEditPlusPipeline
+                pipe = QwenImageEditPlusPipeline.from_pretrained(
+                    self.model_id,
+                    torch_dtype=dtype,
+                    cache_dir=cache_dir,
+                    trust_remote_code=True
+                )
+            except Exception:
+                pipe = DiffusionPipeline.from_pretrained(
+                    self.model_id,
+                    torch_dtype=dtype,
+                    cache_dir=cache_dir,
+                    trust_remote_code=True
+                )
+
+            self.pipeline = pipe
             self.pipeline.to(device)
             self.is_loaded = True
             load_time = round(time.time() - start_t, 2)
@@ -251,10 +287,10 @@ class QwenProvider(InferenceProvider):
         start_t = time.time()
 
         max_dim = 1536 if quality == "high" else 1024
-        inference_steps = steps or (30 if quality == "high" else 20)
-        guidance = guidance_scale or (7.0 if identity_strength == "high" else 5.5)
+        inference_steps = steps or (40 if quality == "high" else 28)
+        guidance = guidance_scale or (8.0 if identity_strength == "high" else 6.5)
 
-        processed_image, _ = resize_image_aspect_ratio(image, max_dim=max_dim, multiple_of=64)
+        processed_image, orig_size = resize_image_aspect_ratio(image, max_dim=max_dim, multiple_of=64)
 
         if torch is None or self.pipeline is None:
             time.sleep(1.0)
@@ -263,19 +299,30 @@ class QwenProvider(InferenceProvider):
             return result_img, actual_seed, proc_time, {
                 "engine": "mock_qwen",
                 "steps": inference_steps,
-                "guidance_scale": guidance
+                "guidance_scale": guidance,
+                "resolution": f"{processed_image.width}x{processed_image.height}"
             }
 
         generator = torch.Generator(device=self.pipeline.device).manual_seed(actual_seed)
 
         with torch.inference_mode():
-            output = self.pipeline(
-                prompt=prompt,
-                image=processed_image,
-                num_inference_steps=inference_steps,
-                guidance_scale=guidance,
-                generator=generator
-            )
+            try:
+                output = self.pipeline(
+                    prompt=prompt,
+                    image=processed_image,
+                    num_inference_steps=inference_steps,
+                    guidance_scale=guidance,
+                    generator=generator
+                )
+            except TypeError:
+                output = self.pipeline(
+                    prompt=prompt,
+                    image=[processed_image],
+                    num_inference_steps=inference_steps,
+                    guidance_scale=guidance,
+                    generator=generator
+                )
+
             result_img = output.images[0]
 
         proc_time = round(time.time() - start_t, 2)
@@ -283,44 +330,59 @@ class QwenProvider(InferenceProvider):
             "model": self.model_id,
             "steps": inference_steps,
             "guidance_scale": guidance,
-            "resolution": f"{result_img.width}x{result_img.height}"
+            "resolution": f"{result_img.width}x{result_img.height}",
+            "device": str(self.pipeline.device)
         }
         return result_img, actual_seed, proc_time, metadata
 
 
-class ProviderRegistry:
-    """Manages active providers and seamless model switching."""
+class ModelRegistry:
+    """Registry managing active model lifecycle and multi-model switching."""
 
     def __init__(self):
-        self.providers: Dict[str, InferenceProvider] = {
+        self._providers: Dict[str, InferenceProvider] = {
             "FireRed-Image-Edit-1.1": FireRedProvider(),
             "Qwen-Image-Edit-2511": QwenProvider()
         }
-        self.active_provider_name: str = "FireRed-Image-Edit-1.1"
+        self.active_model_name: str = "FireRed-Image-Edit-1.1"
 
-    def get_provider(self, name: Optional[str] = None) -> InferenceProvider:
-        target_name = name or self.active_provider_name
-        if target_name not in self.providers:
-            # Fallback to default
-            target_name = "FireRed-Image-Edit-1.1"
-        return self.providers[target_name]
+    def get_provider(self, model_name: str) -> InferenceProvider:
+        if model_name not in self._providers:
+            raise ValueError(f"Model '{model_name}' is not registered. Available: {list(self._providers.keys())}")
+        return self._providers[model_name]
 
-    def switch_model(self, name: str) -> bool:
-        if name not in self.providers:
-            raise ValueError(f"Unknown model provider: {name}")
+    def switch_active_model(self, target_model_name: str) -> bool:
+        if target_model_name not in self._providers:
+            raise ValueError(f"Unknown model: {target_model_name}")
 
-        if name == self.active_provider_name and self.providers[name].is_loaded:
+        if target_model_name == self.active_model_name:
+            provider = self._providers[target_model_name]
+            if not provider.is_loaded:
+                provider.load()
             return True
 
-        # Unload current provider to free VRAM
-        current = self.providers.get(self.active_provider_name)
-        if current and current.is_loaded:
-            current.unload()
+        logger.info(f"Switching active model from {self.active_model_name} to {target_model_name}...")
+        current_provider = self._providers[self.active_model_name]
+        current_provider.unload()
 
-        self.active_provider_name = name
-        new_provider = self.providers[name]
-        return new_provider.load()
+        new_provider = self._providers[target_model_name]
+        new_provider.load()
+        self.active_model_name = target_model_name
+        logger.info(f"Active model successfully switched to: {target_model_name}")
+        return True
+
+    def list_models(self) -> Dict[str, Any]:
+        return {
+            "active_model": self.active_model_name,
+            "available_models": list(self._providers.keys()),
+            "models_status": {
+                name: {
+                    "loaded": provider.is_loaded,
+                    "model_id": provider.model_id
+                }
+                for name, provider in self._providers.items()
+            }
+        }
 
 
-# Global instance
-registry = ProviderRegistry()
+registry = ModelRegistry()
