@@ -10,11 +10,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Cleanly install matched PyTorch 2.5.1 suite to eliminate torchaudio ABI undefined symbol errors
+# Cleanly install matched PyTorch 2.5.1 suite and clean pip cache to save disk space
 RUN pip uninstall -y torchaudio torchvision torch && \
     pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu124 && \
-    pip install --no-cache-dir git+https://github.com/huggingface/diffusers.git transformers accelerate safetensors sentencepiece protobuf runpod fastapi uvicorn pillow pydantic requests httpx
+    pip install --no-cache-dir git+https://github.com/huggingface/diffusers.git transformers accelerate safetensors sentencepiece protobuf runpod fastapi uvicorn pillow pydantic requests httpx && \
+    rm -rf /root/.cache/pip /tmp/*
 
 # Create cache directories
 RUN mkdir -p /root/.cache/huggingface /root/.cache/torch /root/.cache/image_editor_models
