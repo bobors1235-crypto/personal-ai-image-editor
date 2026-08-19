@@ -7,6 +7,7 @@ import os
 import sys
 import time
 import logging
+import threading
 from pathlib import Path
 
 # Add project root and runpod directory to sys.path
@@ -19,6 +20,7 @@ if str(current_dir) not in sys.path:
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
 logger = logging.getLogger("serverless_worker")
+_inference_lock = threading.Lock()
 
 # Import runpod SDK package
 try:
@@ -55,21 +57,25 @@ def serverless_handler(job: dict) -> dict:
         effective_prompt = req.enhanced_prompt if req.enhanced_prompt else req.prompt
 
         # 2. Select Provider & Ensure Loaded
-        provider = registry.get_provider(req.model_name)
-        if not provider.is_loaded:
-            logger.info(f"Loading {req.model_name} into VRAM for job...")
-            provider.load()
+        # A single 80GB GPU cannot safely run two FireRed jobs or two models at
+        # once.  Serialize requests within a worker and unload before a switch.
+        with _inference_lock:
+            registry.switch_active_model(req.model_name)
+            provider = registry.get_provider(req.model_name)
+            if not provider.is_loaded:
+                logger.info(f"Loading {req.model_name} into VRAM for job...")
+                provider.load()
 
-        # 3. Perform Inference
-        result_pil, actual_seed, proc_time, meta = provider.edit(
-            image=pil_image,
-            prompt=effective_prompt,
-            seed=req.seed,
-            quality=req.quality,
-            identity_strength=req.identity_strength,
-            steps=req.steps,
-            guidance_scale=req.guidance_scale
-        )
+            # 3. Perform Inference
+            result_pil, actual_seed, proc_time, meta = provider.edit(
+                image=pil_image,
+                prompt=effective_prompt,
+                seed=req.seed,
+                quality=req.quality,
+                identity_strength=req.identity_strength,
+                steps=req.steps,
+                guidance_scale=req.guidance_scale
+            )
 
         # 4. Convert Result to Base64
         result_b64 = pil_to_base64(result_pil, format="PNG")

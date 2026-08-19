@@ -6,6 +6,7 @@ Handles model cache in /workspace, CUDA VRAM tracking, and warm loading.
 import os
 import gc
 import logging
+import shutil
 from typing import Dict, Any, Optional
 
 try:
@@ -22,20 +23,45 @@ class ModelManager:
 
     WORKSPACE_CACHE = "/workspace/models"
     LOCAL_CACHE = os.path.expanduser("~/.cache/image_editor_models")
+    MIN_FREE_DISK_GB = 60
 
     @classmethod
     def get_cache_dir(cls) -> str:
-        """Return persistent /workspace cache or /runpod-volume if available, otherwise local cache."""
-        if os.path.exists("/workspace") and os.path.isdir("/workspace"):
-            os.makedirs(cls.WORKSPACE_CACHE, exist_ok=True)
-            return cls.WORKSPACE_CACHE
-        if os.path.exists("/runpod-volume") and os.path.isdir("/runpod-volume"):
-            path = "/runpod-volume/cache/models"
-            os.makedirs(path, exist_ok=True)
-            return path
-        cache_dir = os.environ.get("HF_HOME") or cls.LOCAL_CACHE
+        """Return one explicit cache directory and fail before a partial model download."""
+        configured = os.environ.get("RUNPOD_MODEL_CACHE")
+        if configured:
+            cache_dir = configured
+        elif os.path.isdir("/runpod-volume"):
+            cache_dir = "/runpod-volume/cache/models"
+        elif os.path.isdir("/workspace"):
+            cache_dir = cls.WORKSPACE_CACHE
+        else:
+            cache_dir = os.environ.get("HF_HOME") or cls.LOCAL_CACHE
         os.makedirs(cache_dir, exist_ok=True)
+        required_gb = int(os.environ.get("RUNPOD_MIN_FREE_DISK_GB", cls.MIN_FREE_DISK_GB))
+        free_gb = shutil.disk_usage(cache_dir).free / (1024 ** 3)
+        if free_gb < required_gb:
+            raise RuntimeError(
+                f"Insufficient disk for model cache at {cache_dir}: {free_gb:.1f}GB free; "
+                f"at least {required_gb}GB is required. Increase the Serverless container disk "
+                "or set RUNPOD_MODEL_CACHE to a larger mounted volume."
+            )
+        logger.info("Using model cache %s (%.1fGB free).", cache_dir, free_gb)
         return cache_dir
+
+    @classmethod
+    def require_gpu_memory(cls, minimum_gb: int = 70) -> None:
+        """Reject an unsafe full-GPU load before the worker is killed by CUDA OOM."""
+        if torch is None or not torch.cuda.is_available():
+            raise RuntimeError("CUDA GPU is required for RunPod inference.")
+        total_gb = torch.cuda.get_device_properties(0).total_memory / (1024 ** 3)
+        if total_gb < minimum_gb:
+            raise RuntimeError(
+                f"This model needs a GPU with at least {minimum_gb}GB VRAM for reliable full-GPU inference; "
+                f"this worker has {total_gb:.1f}GB. Configure the Serverless endpoint with an 80GB GPU "
+                "(A100 80GB or H100), max workers = 1, and max concurrency = 1. "
+                "Do not use CPU offload unless the endpoint also has at least 64GB RAM allocated."
+            )
 
     @classmethod
     def get_gpu_info(cls) -> Dict[str, Any]:

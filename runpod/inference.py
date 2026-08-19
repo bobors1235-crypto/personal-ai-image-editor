@@ -9,6 +9,7 @@ import gc
 import time
 import random
 import logging
+import threading
 from abc import ABC, abstractmethod
 from typing import Optional, Dict, Any, Tuple
 from PIL import Image
@@ -31,6 +32,34 @@ logger = logging.getLogger("inference")
 logging.basicConfig(level=logging.INFO)
 
 
+def _env_flag(name: str, default: bool = False) -> bool:
+    return os.environ.get(name, "1" if default else "0").strip().lower() in {"1", "true", "yes", "on"}
+
+
+def _load_qwen_edit_pipeline(model_id: str, dtype: Any, cache_dir: str):
+    """Load the model's declared pipeline exactly once, with one dtype argument.
+
+    FireRed's model_index.json declares QwenImageEditPlusPipeline.  Falling back
+    after an arbitrary load error caused duplicate downloads and masked storage
+    errors, so a real failure is surfaced to the caller instead.
+    """
+    try:
+        from diffusers import QwenImageEditPlusPipeline
+    except ImportError as exc:
+        raise RuntimeError(
+            "Installed diffusers does not provide QwenImageEditPlusPipeline. "
+            "Build the supplied Dockerfile, which pins a compatible version."
+        ) from exc
+
+    return QwenImageEditPlusPipeline.from_pretrained(
+        model_id,
+        dtype=dtype,
+        cache_dir=cache_dir,
+        trust_remote_code=True,
+        low_cpu_mem_usage=True,
+    )
+
+
 class InferenceProvider(ABC):
     """Abstract interface for modular image editing models."""
 
@@ -38,6 +67,7 @@ class InferenceProvider(ABC):
         self.model_id = model_id
         self.pipeline = None
         self.is_loaded = False
+        self._load_lock = threading.RLock()
 
     @abstractmethod
     def load(self) -> bool:
@@ -79,62 +109,50 @@ class FireRedProvider(InferenceProvider):
         super().__init__(model_id or self.DEFAULT_MODEL_ID)
 
     def load(self) -> bool:
-        if self.is_loaded and self.pipeline is not None:
-            return True
+        with self._load_lock:
+            if self.is_loaded and self.pipeline is not None:
+                return True
 
-        if os.environ.get("MOCK_INFERENCE") == "1" or torch is None or DiffusionPipeline is None or not torch.cuda.is_available():
-            logger.info("CUDA not detected or MOCK_INFERENCE enabled. Using lightweight simulation mode.")
-            self.is_loaded = True
-            return True
+            if os.environ.get("MOCK_INFERENCE") == "1" or torch is None or DiffusionPipeline is None or not torch.cuda.is_available():
+                logger.info("CUDA not detected or MOCK_INFERENCE enabled. Using lightweight simulation mode.")
+                self.is_loaded = True
+                return True
 
-        logger.info(f"Loading FireRed-Image-Edit-1.1 from {self.model_id} in native bfloat16...")
-        start_t = time.time()
-        cache_dir = ModelManager.get_cache_dir()
-        dtype = torch.bfloat16 if (torch.cuda.is_available() and torch.cuda.is_bf16_supported()) else torch.float16
-        device = "cuda"
+            logger.info(f"Loading FireRed-Image-Edit-1.1 from {self.model_id} in native bfloat16...")
+            start_t = time.time()
+            cache_dir = ModelManager.get_cache_dir()
+            dtype = ModelManager.get_dtype()
+            cpu_offload = _env_flag("RUNPOD_CPU_OFFLOAD")
 
-        try:
-            pipe = None
             try:
-                from diffusers import QwenImageEditPlusPipeline
-                pipe = QwenImageEditPlusPipeline.from_pretrained(
-                    self.model_id,
-                    torch_dtype=dtype,
-                    dtype=dtype,
-                    cache_dir=cache_dir,
-                    trust_remote_code=True,
-                    low_cpu_mem_usage=True
-                )
-            except Exception as pe:
-                logger.info(f"Direct QwenImageEditPlusPipeline load notice: {pe}. Falling back to DiffusionPipeline...")
-                pipe = DiffusionPipeline.from_pretrained(
-                    self.model_id,
-                    torch_dtype=dtype,
-                    dtype=dtype,
-                    cache_dir=cache_dir,
-                    trust_remote_code=True,
-                    low_cpu_mem_usage=True
-                )
+                if not cpu_offload:
+                    ModelManager.require_gpu_memory()
+                pipe = _load_qwen_edit_pipeline(self.model_id, dtype, cache_dir)
 
-            # Move directly to GPU in bfloat16 (takes ~22GB VRAM on 48GB GPU, leaving ~26GB free)
-            pipe.to(device)
+                if cpu_offload:
+                    logger.warning("CPU offload enabled. This requires at least 64GB endpoint RAM and is slower.")
+                    pipe.enable_model_cpu_offload()
+                    device = "cpu-offload"
+                else:
+                    pipe.to("cuda")
+                    device = "cuda"
 
-            if hasattr(pipe, "enable_attention_slicing"):
-                pipe.enable_attention_slicing(slice_size="auto")
-            if hasattr(pipe, "enable_vae_tiling"):
-                pipe.enable_vae_tiling()
-            if hasattr(pipe, "enable_vae_slicing"):
-                pipe.enable_vae_slicing()
+                if hasattr(pipe, "enable_attention_slicing"):
+                    pipe.enable_attention_slicing(slice_size="auto")
+                if hasattr(pipe, "enable_vae_tiling"):
+                    pipe.enable_vae_tiling()
+                if hasattr(pipe, "enable_vae_slicing"):
+                    pipe.enable_vae_slicing()
 
-            self.pipeline = pipe
-            self.is_loaded = True
-            load_time = round(time.time() - start_t, 2)
-            logger.info(f"FireRed-Image-Edit-1.1 loaded on {device} in {load_time}s.")
-            return True
-        except Exception as e:
-            logger.error(f"Failed to load FireRed model: {e}")
-            self.unload()
-            raise e
+                self.pipeline = pipe
+                self.is_loaded = True
+                load_time = round(time.time() - start_t, 2)
+                logger.info(f"FireRed-Image-Edit-1.1 loaded on {device} in {load_time}s.")
+                return True
+            except Exception as e:
+                logger.error(f"Failed to load FireRed model: {e}")
+                self.unload()
+                raise
 
     def unload(self):
         if self.pipeline is not None:
@@ -235,60 +253,48 @@ class QwenProvider(InferenceProvider):
         super().__init__(model_id or self.DEFAULT_MODEL_ID)
 
     def load(self) -> bool:
-        if self.is_loaded and self.pipeline is not None:
-            return True
+        with self._load_lock:
+            if self.is_loaded and self.pipeline is not None:
+                return True
 
-        if os.environ.get("MOCK_INFERENCE") == "1" or torch is None or DiffusionPipeline is None or not torch.cuda.is_available():
-            logger.info("CUDA not detected or MOCK_INFERENCE enabled. Using lightweight simulation mode.")
-            self.is_loaded = True
-            return True
+            if os.environ.get("MOCK_INFERENCE") == "1" or torch is None or DiffusionPipeline is None or not torch.cuda.is_available():
+                logger.info("CUDA not detected or MOCK_INFERENCE enabled. Using lightweight simulation mode.")
+                self.is_loaded = True
+                return True
 
-        logger.info(f"Loading Qwen-Image-Edit-2511 from {self.model_id} in native bfloat16...")
-        start_t = time.time()
-        cache_dir = ModelManager.get_cache_dir()
-        dtype = torch.bfloat16 if (torch.cuda.is_available() and torch.cuda.is_bf16_supported()) else torch.float16
-        device = "cuda"
+            logger.info(f"Loading Qwen-Image-Edit-2511 from {self.model_id} in native bfloat16...")
+            start_t = time.time()
+            cache_dir = ModelManager.get_cache_dir()
+            dtype = ModelManager.get_dtype()
+            cpu_offload = _env_flag("RUNPOD_CPU_OFFLOAD")
 
-        try:
-            pipe = None
             try:
-                from diffusers import QwenImageEditPlusPipeline
-                pipe = QwenImageEditPlusPipeline.from_pretrained(
-                    self.model_id,
-                    torch_dtype=dtype,
-                    dtype=dtype,
-                    cache_dir=cache_dir,
-                    trust_remote_code=True,
-                    low_cpu_mem_usage=True
-                )
-            except Exception:
-                pipe = DiffusionPipeline.from_pretrained(
-                    self.model_id,
-                    torch_dtype=dtype,
-                    dtype=dtype,
-                    cache_dir=cache_dir,
-                    trust_remote_code=True,
-                    low_cpu_mem_usage=True
-                )
+                if not cpu_offload:
+                    ModelManager.require_gpu_memory()
+                pipe = _load_qwen_edit_pipeline(self.model_id, dtype, cache_dir)
 
-            pipe.to(device)
+                if cpu_offload:
+                    logger.warning("CPU offload enabled. This requires at least 64GB endpoint RAM and is slower.")
+                    pipe.enable_model_cpu_offload()
+                else:
+                    pipe.to("cuda")
 
-            if hasattr(pipe, "enable_attention_slicing"):
-                pipe.enable_attention_slicing(slice_size="auto")
-            if hasattr(pipe, "enable_vae_tiling"):
-                pipe.enable_vae_tiling()
-            if hasattr(pipe, "enable_vae_slicing"):
-                pipe.enable_vae_slicing()
+                if hasattr(pipe, "enable_attention_slicing"):
+                    pipe.enable_attention_slicing(slice_size="auto")
+                if hasattr(pipe, "enable_vae_tiling"):
+                    pipe.enable_vae_tiling()
+                if hasattr(pipe, "enable_vae_slicing"):
+                    pipe.enable_vae_slicing()
 
-            self.pipeline = pipe
-            self.is_loaded = True
-            load_time = round(time.time() - start_t, 2)
-            logger.info(f"Qwen-Image-Edit-2511 loaded in {load_time}s.")
-            return True
-        except Exception as e:
-            logger.error(f"Failed to load Qwen model: {e}")
-            self.unload()
-            raise e
+                self.pipeline = pipe
+                self.is_loaded = True
+                load_time = round(time.time() - start_t, 2)
+                logger.info(f"Qwen-Image-Edit-2511 loaded in {load_time}s.")
+                return True
+            except Exception as e:
+                logger.error(f"Failed to load Qwen model: {e}")
+                self.unload()
+                raise
 
     def unload(self):
         if self.pipeline is not None:

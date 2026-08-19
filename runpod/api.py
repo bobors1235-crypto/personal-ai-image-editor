@@ -14,6 +14,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from shared.schemas import EditRequest, EditResponse, HealthResponse
 
 try:
     from image_utils import base64_to_pil, pil_to_base64
@@ -65,7 +66,7 @@ async def health_check():
         gpu_name=gpu_info.get("gpu_name"),
         vram_used_gb=gpu_info.get("vram_used_gb"),
         vram_total_gb=gpu_info.get("vram_total_gb"),
-        active_model=registry.active_provider_name,
+        active_model=registry.active_model_name,
         server_time=time.time(),
         version="1.0.0"
     )
@@ -75,8 +76,8 @@ async def health_check():
 async def list_models():
     """List available editing models."""
     return {
-        "active_model": registry.active_provider_name,
-        "available_models": list(registry.providers.keys())
+        "active_model": registry.active_model_name,
+        "available_models": registry.list_models()["available_models"]
     }
 
 
@@ -88,7 +89,7 @@ async def load_model(payload: dict):
         success = registry.switch_model(model_name)
         return {
             "success": success,
-            "active_model": registry.active_provider_name,
+            "active_model": registry.active_model_name,
             "message": f"Model {model_name} loaded successfully."
         }
     except Exception as e:

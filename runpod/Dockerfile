@@ -10,11 +10,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Cleanly install matched PyTorch 2.5.1 suite and clean pip cache to save disk space
-RUN pip uninstall -y torchaudio torchvision torch && \
-    pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu124 && \
-    pip install --no-cache-dir git+https://github.com/huggingface/diffusers.git transformers accelerate safetensors sentencepiece protobuf runpod fastapi uvicorn pillow pydantic requests httpx && \
+# Keep the base image's CUDA-matched PyTorch. Pin Diffusers because FireRed's
+# model index requires QwenImageEditPlusPipeline; a Git HEAD build is not reproducible.
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir diffusers==0.36.0 "transformers>=4.49,<5" "accelerate>=1.4,<2" safetensors sentencepiece protobuf runpod fastapi uvicorn pillow pydantic requests httpx && \
     rm -rf /root/.cache/pip /tmp/*
 
 # Create cache directories
@@ -26,7 +25,10 @@ COPY runpod /app/runpod
 
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONPATH=/app:/app/runpod
-ENV HF_HOME=/root/.cache/huggingface
+ENV HF_HOME=/workspace/models
+ENV RUNPOD_MODEL_CACHE=/workspace/models
+ENV RUNPOD_MIN_FREE_DISK_GB=60
+ENV RUNPOD_CPU_OFFLOAD=0
 ENV TORCH_HOME=/root/.cache/torch
 ENV PYTORCH_CUDA_ALLOC_CONF="expandable_segments:True"
 

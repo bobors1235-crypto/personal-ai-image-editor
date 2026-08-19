@@ -92,30 +92,22 @@ personal-ai-image-editor/
 
 ---
 
-### ثانياً: تشغيل خادم الاستدلال على RunPod (GPU Pod)
+### ثانياً: نشر خادم الاستدلال على RunPod Serverless
 
-1. **إنشاء Pod على RunPod**:
-   - اختر GPU مناسب: **RTX A6000 48GB** أو **A40 48GB** (Community Cloud للأرخص).
-   - تأكد من تعيين حجم Storage كافي (مثلاً 50GB على الأقل لـ `/workspace`).
-2. **رفع وتشغيل السيرفر داخل RunPod Web Terminal**:
+1. **إنشاء Serverless Endpoint على RunPod**:
+   - اختر **A100 80GB أو H100 80GB**. لا تستخدم A40/A6000 48GB لهذا الموديل: أوزانه وحدها تستهلك قرابة 44GB ولا تترك مساحة آمنة للاستدلال.
+   - عيّن **Container Disk = 80GB أو أكثر**، و **Max Workers = 1** و **Max Concurrency = 1**. النموذج يحتاج مساحة تنزيل وكاش فعلية، لا 20GB الافتراضية.
+   - اترك `RUNPOD_CPU_OFFLOAD=0`. لا تفعّله إلا إذا كان الـendpoint مخصصًا له 64GB RAM على الأقل؛ هو أبطأ وقد يُقتل الـcontainer عند حد RAM أصغر.
+2. **بناء الصورة ورفعها إلى Docker registry ثم ربطها بالـEndpoint**:
    ```bash
-   # 1. الدخول لمجلد العمل
-   cd /workspace
-   
-   # 2. استنساخ أو رفع مجلد المشروع
-   # git clone https://github.com/bobors1235-crypto/personal-ai-image-editor.git
-   cd personal-ai-image-editor/runpod
-   
-   # 3. تشغيل سكريبت التثبيت
-   chmod +x install.sh start.sh
-   ./install.sh
-   
-   # 4. بدء تشغيل خادم الاستدلال
-   ./start.sh
+   # نفّذ من جذر المشروع، ثم استبدل registry/name بقيمة صورتك
+   docker build -f runpod/Dockerfile -t <registry>/personal-ai-image-editor:serverless .
+   docker push <registry>/personal-ai-image-editor:serverless
    ```
-3. **ربط الواجهة المحلية بـ RunPod**:
-   - انسخ رابط المنفذ `8000` أو رابط RunPod Proxy الخاص بالـ Pod (مثال: `https://<pod-id>-8000.proxy.runpod.net`).
-   - افتح **الإعدادات (Settings)** في الواجهة المحلية، وضع الرابط في حقل `RunPod Endpoint URL`، وغيّر نوع المزود إلى **RunPod GPU Server**.
+   - في RunPod Serverless اختر هذه الصورة، واضبط متغيرات البيئة الموجودة في Dockerfile كما هي، ثم اضغط **Deploy**.
+3. **ربط الواجهة المحلية بالـEndpoint**:
+   - انسخ **Endpoint ID** (وليس رابط Proxy).
+   - افتح **الإعدادات (Settings)** في الواجهة المحلية، وضعه في حقل `RunPod Serverless Endpoint ID`، وأدخل RunPod API Key، وغيّر نوع المزود إلى **RunPod Serverless**.
    - اضغط **حفظ الإعدادات**. سيتحول المؤشر فوراً إلى: `● GPU Ready`.
 
 ---
